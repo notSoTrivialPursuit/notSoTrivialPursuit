@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import "./App.scss";
@@ -14,28 +13,52 @@ const SavedGame = () => {
 };
 
 class App extends Component {
+	constructor() {
+		super();
+		this.state = {
+			gameToShow: "",
+			showButtons: true
+		};
+	}
+
+	// which game to render based on user choice and toggleGame function
+	renderGame = () => {
+		if (this.state.gameToShow === "newGame") {
+			return <NewGame />;
+		} else if (this.state.gameToShow === "savedGame") {
+			return <SavedGame />;
+		}
+	};
+
+	// updates state with which game chosen and removes buttons
+	toggleGame = chosenGame => {
+		this.setState({
+			gameToShow: chosenGame,
+			showButtons: false
+		});
+	};
+
 	render() {
 		return (
-			<Router>
-				<div className='wrapper'>
-					<Header />
+			<div className="wrapper">
+				<Header />
 
-					{/* New Game and Saved Game Buttons */}
-					<div className='newGameButton'>
-						<Link to='/newGame'>New Game</Link>
-					</div>
+				{/* New Game and Saved Game Buttons */}
+				{this.state.showButtons ? (
+					<section className="gameButtons">
+						<button type="submit" onClick={() => this.toggleGame("newGame")}>
+							New Game
+						</button>
+						<button type="submit" onClick={() => this.toggleGame("savedGame")}>
+							Saved Game
+						</button>
+					</section>
+        ) : null}
+        
+				{this.renderGame()}
 
-					<div className='savedGameButton'>
-						<Link to='/savedGame'>Saved Games</Link>
-					</div>
-
-
-					<Route path='/newGame' component={NewGame} />
-					<Route path='/savedGame' component={SavedGame} />
-
-					<Footer />
-				</div>
-			</Router>
+				<Footer />
+			</div>
 		);
 	}
 }
