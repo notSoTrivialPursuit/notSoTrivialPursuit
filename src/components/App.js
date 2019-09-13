@@ -53,7 +53,7 @@ class App extends Component {
 	// updates state with which game chosen and removes buttons
 	toggleGame = chosenGame => {
 		this.setState({
-			gameToShow: chosenGame
+			componentToShow: chosenGame
 		});
 	};
 
@@ -63,7 +63,7 @@ class App extends Component {
 				<Header />
 
 				{/* New Game and Saved Game Buttons */}
-				{!this.state.gameToShow ? (
+				{!this.state.componentToShow ? (
 					<section className='gameButtons'>
 						<button type='submit' onClick={() => this.toggleGame('newGame')}>
 							New Game
