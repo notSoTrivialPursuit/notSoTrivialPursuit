@@ -1,5 +1,5 @@
 .wrapper {
-	text-align: center;
+	// text-align: center;
 	width: 85%;
 	max-width: 1400px;
 	margin: 0 auto;
@@ -25,3 +25,10 @@ a {
 		border-bottom: 2px solid $orange;
 	}
 }
+	font-size: 1.6rem;
+}
+
+// body {
+//     background: linear-gradient(to top right, $red, $orange, $yellow) fixed;
+//     height: 100vh;
+// }
