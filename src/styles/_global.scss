@@ -1,5 +1,5 @@
 .wrapper {
-	text-align: center;
+	// text-align: center;
 	width: 85%;
 	max-width: 1400px;
 	margin: 0 auto;
@@ -8,6 +8,10 @@
 html {
 	font-size: 62.5%;
 	font-family: $baseFont;
+}
+
+body {
+	font-size: 1.6rem;
 }
 
 // body {

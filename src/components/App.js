@@ -3,11 +3,13 @@ import Header from './Header';
 import Footer from './Footer';
 import SavedGame from './SavedGame';
 import '.././styles/App.scss';
+import '../components/NewGame';
+import NewGame from '../components/NewGame';
 
 // placeholder functional components
-const NewGame = () => {
-	return <h2>New Game here</h2>;
-};
+// const NewGame = () => {
+// 	return <h2>New Game here</h2>;
+// };
 
 const GameList = () => {
 	return <h2>Saved Game List here</h2>;
@@ -25,11 +27,13 @@ class App extends Component {
 	renderComponent = () => {
 		if (this.state.componentToShow === 'newGame') {
 			return (
-				<NewGame
-					toggleGame={() => {
-						this.toggleGame('');
-					}}
-				/>
+				// <NewGame
+				// 	toggleGame={() => {
+				// 		this.toggleGame('');
+				// 	}}
+				// />
+
+				<NewGame />
 			);
 		} else if (this.state.componentToShow === 'gameList') {
 			return (
@@ -62,8 +66,10 @@ class App extends Component {
 			<div className='wrapper'>
 				<Header />
 
+				<NewGame />
+
 				{/* New Game and Saved Game Buttons */}
-				{!this.state.componentToShow ? (
+				{/* {!this.state.componentToShow ? (
 					<section className='gameButtons'>
 						<button type='submit' onClick={() => this.toggleGame('newGame')}>
 							New Game
@@ -74,7 +80,7 @@ class App extends Component {
 					</section>
 				) : null}
 
-				{this.renderComponent()}
+				{this.renderComponent()} */}
 
 				<Footer />
 			</div>
