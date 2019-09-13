@@ -4,12 +4,13 @@ import Footer from './Footer';
 import GameList from './GameList';
 import SavedGame from './SavedGame';
 import '.././styles/App.scss';
-import saveGame from '../helpers';
+import '../components/NewGame';
+import NewGame from '../components/NewGame';
 
 // placeholder functional components
-const NewGame = () => {
-	return <h2>New Game here</h2>;
-};
+// const NewGame = () => {
+// 	return <h2>New Game here</h2>;
+// };
 
 // const GameList = () => {
 // 	return <h2>Saved Game List here</h2>;
@@ -32,6 +33,7 @@ class App extends Component {
 						this.toggleGame('');
 					}}
 				/>
+
 			);
 		} else if (this.state.componentToShow === 'gameList') {
 			return (
