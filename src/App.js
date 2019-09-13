@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import SavedGame from "./SavedGame";
 import "./App.scss";
 
 // placeholder functional components
@@ -9,9 +10,9 @@ const NewGame = () => {
 	return <h2>New Game here</h2>;
 };
 
-const SavedGame = () => {
-	return <h2>Saved Game here</h2>;
-};
+// const SavedGame = () => {
+// 	return <h2>Saved Game here</h2>;
+// };
 
 class App extends Component {
 	render() {
