@@ -4,6 +4,7 @@ import Footer from './Footer';
 import GameList from './GameList';
 import SavedGame from './SavedGame';
 import '.././styles/App.scss';
+import saveGame from '../helpers';
 
 // placeholder functional components
 const NewGame = () => {
