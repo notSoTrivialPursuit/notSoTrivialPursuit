@@ -33,7 +33,6 @@ class App extends Component {
 						this.toggleGame('');
 					}}
 				/>
-
 			);
 		} else if (this.state.componentToShow === 'gameList') {
 			return (
@@ -63,22 +62,23 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className='wrapper'>
+			<div className='App'>
 				<Header />
+				<div className='wrapper'>
+					{/* New Game and Saved Game Buttons */}
+					{!this.state.componentToShow ? (
+						<section className='gameButtons'>
+							<button type='submit' onClick={() => this.toggleGame('newGame')}>
+								New Game
+							</button>
+							<button type='submit' onClick={() => this.toggleGame('gameList')}>
+								Saved Game List
+							</button>
+						</section>
+					) : null}
 
-				{/* New Game and Saved Game Buttons */}
-				{!this.state.componentToShow ? (
-					<section className='gameButtons'>
-						<button type='submit' onClick={() => this.toggleGame('newGame')}>
-							New Game
-						</button>
-						<button type='submit' onClick={() => this.toggleGame('gameList')}>
-							Saved Game List
-						</button>
-					</section>
-				) : null}
-
-				{this.renderComponent()}
+					{this.renderComponent()}
+				</div>
 
 				<Footer />
 			</div>
