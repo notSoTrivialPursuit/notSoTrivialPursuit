@@ -10,7 +10,18 @@ html {
 	font-family: $baseFont;
 }
 
-// body {
-//     background: linear-gradient(to top right, $red, $orange, $yellow) fixed;
-//     height: 100vh;
-// }
+body {
+	background: $black url('../assets/softerQuestionPattern.png') fixed;
+	height: 100vh;
+	font-size: 1.6rem;
+}
+
+a {
+	color: $orange;
+	text-decoration: none;
+	&:focus,
+	&:hover {
+		padding-bottom: 0.2rem;
+		border-bottom: 2px solid $orange;
+	}
+}

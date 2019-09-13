@@ -1,6 +1,16 @@
+header {
+	background: rgba(0, 0, 0, 0.8) fixed;
+	// background: $black;
+	padding-top: 8rem;
+}
+
 h1 {
 	font-family: $headingFont;
+	color: $yellow;
 	font-size: 9.6rem;
+	line-height: 1;
 	margin-top: 0;
+	text-align: center;
+	text-shadow: 0.5rem 0.5rem $orange;
 	text-transform: uppercase;
 }
