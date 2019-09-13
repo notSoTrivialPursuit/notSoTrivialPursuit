@@ -6,12 +6,12 @@ import Swal from 'sweetalert2';
 // 3. And displays a "success" sweet alert
 const saveGame = (newGame) => {
   // 1.
-  // const dbRef = firebase.database().ref();
-  // const newGameRef = dbRef.push();
+  const dbRef = firebase.database().ref();
+  const newGameRef = dbRef.push();
 
-  // // 2.
-  // newGame.id = newGameRef;
-  // dbRef.set(newGame);
+  // 2.
+  newGame.id = newGameRef;
+  dbRef.set(newGame);
 
   // 3.
   Swal.fire({
