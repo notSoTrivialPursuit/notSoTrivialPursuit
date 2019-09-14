@@ -23,23 +23,11 @@ class NewGame extends Component {
         }
     }
 
-    // Function to handle the change
-    handleChange = (event) => {
-        const questionSetCopy = [...this.state.questionSet];
-
-        // Update the userAnswer property value with what the user selected answer
-        questionSetCopy[event.target.name].userAnswer = event.target.value;
-
-        this.setState({
-            questionSet: questionSetCopy
-        })
-    }
-
     createQuestionSet = (responseData, choicesArray) => {
         // Create an array of objects
         const questionSet = [];
 
-        console.log("createQuestionSet responseData", responseData);
+        console.log('createQuestionSet responseData', responseData);
 
         responseData.forEach((data, index) => {
             questionSet.push({
@@ -97,8 +85,6 @@ class NewGame extends Component {
     handlePlay = (event) => {
         event.preventDefault();
 
-        console.log('componentDidMount');
-
         // Connect to API
         axios({
             url: 'https://opentdb.com/api.php',
@@ -133,54 +119,64 @@ class NewGame extends Component {
         })
     }
 
+    // Function to handle the change
+    handleChange = (event) => {
+        const questionSetCopy = [...this.state.questionSet];
+
+        // Update the userAnswer property value with what the user selected answer
+        questionSetCopy[event.target.name].userAnswer = event.target.value;
+
+        this.setState({
+            questionSet: questionSetCopy
+        })
+    }
+
     render() {
-        console.log("RENDER");
+        console.log('RENDER');
 
         const questionSet = this.state.questionSet;
 
-        console.log("QUESTIONSET ", questionSet);
+        console.log('QUESTIONSET ', questionSet);
 
         return (
             <div className='newGameTrivia'>
-                <form onSubmit={this.handlePlay}>
-                    <label htmlFor="gameName">Game Name</label>
-                    <input type="text" id="gameName" name='gameName' onChange={this.handleCriteria}/>
+                <div className='criteria'>
+                    <form onSubmit={this.handlePlay}>
+                    <label htmlFor='gameName'>Game Name</label>
+                    <input type='text' id='gameName' name='gameName' onChange={this.handleCriteria}/>
 
-                    <label htmlFor="category">Categories</label>
-                    <select name="category" id="category" onChange={this.handleCriteria} required>
-                        <option value="">Choose one</option>
-                        <option value="27">Animals</option>
-                        <option value="25">Art</option>
-                        <option value="9">General Knowledge</option>
-                        <option value="22">Geography</option>
-                        <option value="23">History</option>
-                        <option value="11">Movies</option>
-                        <option value="17">Science and Nature</option>
-                        <option value="21">Sports</option>
+                    <label htmlFor='category'>Categories</label>
+                    <select name='category' id='category' onChange={this.handleCriteria} required>
+                        <option value=''>Choose one</option>
+                        <option value='27'>Animals</option>
+                        <option value='25'>Art</option>
+                        <option value='9'>General Knowledge</option>
+                        <option value='22'>Geography</option>
+                        <option value='23'>History</option>
+                        <option value='11'>Movies</option>
+                        <option value='17'>Science and Nature</option>
+                        <option value='21'>Sports</option>
                     </select>
 
-                    <div className="sliderWrapper">
-                        <label htmlFor="numQuestions">Number of Questions</label>
-                        <input
-                            id="numQuestions"
-                            type="range"
-                            min="5"
-                            max="20"
-                            step="5"
-                            className="numQuestions"
-                            value={this.state.numQuestion}
-                            onChange={this.handleCriteria}
-                            name="numQuestions"
-                        ></input>
-                        <span>{this.state.numQuestions}</span>
-                    </div>
+                    <label htmlFor='numQuestions'>Number of Questions</label>
+                    <select 
+                        name='numQuestions' 
+                        id='numQuestions' 
+                        className='numQuestions'
+                        onChange={this.handleCriteria}
+                        required>
+                        <option value='10'>10</option>
+                        <option value='15'>15</option>
+                        <option value='20'>20</option>
+                    </select>
 
-                    <button type="submit" className="playGame" >
+                    <button type='submit' className='playGame' >
                         Let's play
                 </button>
                 </form>
+                </div>
 
-                <form action="" onSubmit={this.handleSubmit}>
+                <form action='' onSubmit={this.handleSubmit}>
                     {
                         questionSet.map((data, index) => {
                             return (
@@ -197,7 +193,7 @@ class NewGame extends Component {
                                             return (
                                                 <div key={`${index}-${i}`}>
                                                     <input
-                                                        type="radio"
+                                                        type='radio'
                                                         name={uniqueKey}
                                                         id={`${uniqueKey}-${i}`}
                                                         value={choice}
@@ -211,7 +207,7 @@ class NewGame extends Component {
                             )
                         })
                     }
-                    <button className="formSubmit">Submit</button>
+                    <button className='formSubmit'>Submit</button>
                 </form>
 
                 <button>Save the game</button>

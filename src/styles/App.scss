@@ -1,10 +1,11 @@
 @import 'setup';
-@import 'partials';
+@import 'variablesAndMixins';
 @import 'global';
 @import 'header';
 @import 'footer';
 
 
-.question {
+.question,
+.criteria {
     background: salmon;
 }
