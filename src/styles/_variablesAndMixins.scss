@@ -1,0 +1,25 @@
+$headingFont: "Caveat Brush", cursive;
+$baseFont: "Lato", sans-serif;
+
+$yellow: #ffe500;
+$orange: #d26121;
+$red: #550e1b;
+$black: #000;
+$white: #fff;
+
+
+@mixin phone {
+    @media (min-width: 360px) { @content; }
+}
+
+@mixin tablet {
+    @media (min-width: 768px) { @content; }
+}
+
+@mixin desktop {
+    @media (min-width: 1024px) { @content; }
+}
+
+@mixin desktopBigger {
+    @media (min-width: 1280px) { @content; }
+}

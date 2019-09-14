@@ -4,7 +4,7 @@ const Footer = () => {
     return (
 			<footer>
 				<p>
-					Built in 2019 by{" "}
+					&copy; 2019 {' '}
 					<a
 						href='https://www.alexandralim.dev'
 						target='_blank'
@@ -12,7 +12,7 @@ const Footer = () => {
 					>
 						Alexandra Lim
 					</a>
-					,{" "}
+					,{' '}
 					<a
 						href='https://anamorales.dev/'
 						target='_blank'
@@ -20,7 +20,7 @@ const Footer = () => {
 					>
 						Ana Morales
 					</a>
-					,{" "}
+					,{' '}
 					<a
 						href='https://www.danielfitz.com'
 						target='_blank'
@@ -28,7 +28,7 @@ const Footer = () => {
 					>
 						Dan Fitz
 					</a>
-					, and{" "}
+					, and{' '}
 					<a
 						href='http://http://www.pujacodes.com/'
 						target='_blank'
@@ -38,7 +38,7 @@ const Footer = () => {
 					</a>
 				</p>
 				<p>
-					Powered by{" "}
+					Powered by{' '}
 					<a
 						href='https://opentdb.com/api_config.php'
 						target='_blank'
