@@ -35,7 +35,8 @@ class NewGame extends Component {
                 question: this.htmlDecode(data.question),
                 choices: choicesArray[index],
                 correctAnswer: this.htmlDecode(data.correct_answer),
-                userAnswer: ''
+                userAnswer: '',
+                isCorrect: undefined
             })
         })
 
@@ -124,7 +125,14 @@ class NewGame extends Component {
         const questionSetCopy = [...this.state.questionSet];
 
         // Update the userAnswer property value with what the user selected answer
-        questionSetCopy[event.target.name].userAnswer = event.target.value;
+        const obj = questionSetCopy[event.target.name]
+        obj.userAnswer = event.target.value;
+
+        if (obj.userAnswer === obj.correctAnswer) {
+            obj.isCorrect = true
+        } else {
+            obj.isCorrect = false
+        }
 
         this.setState({
             questionSet: questionSetCopy
