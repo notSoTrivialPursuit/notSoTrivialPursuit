@@ -57,7 +57,8 @@ class SavedGame extends Component {
 			type: 'success',
 			showCancelButton: true,
 			confirmButtonText: 'Yes, play again',
-			cancelButtonText: 'No, play another game'
+			cancelButtonText: 'No, play another game',
+			allowOutsideClick: false
 		}).then(result => {
 			if (result.value) {
 				form.reset();
@@ -89,6 +90,7 @@ class SavedGame extends Component {
 											name={uniqueKey}
 											id={`${uniqueKey}-${i}`}
 											value={choice}
+											required
 										/>
 										<label htmlFor={`${uniqueKey}-${i}`}>{choice}</label>
 									</div>
