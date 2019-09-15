@@ -21,7 +21,7 @@ class NewGame extends Component {
 			questionSet: [],
 			category: '',
 			numQuestions: 10,
-            gameName: '',
+			gameName: ''
 		};
 	}
 
@@ -155,17 +155,21 @@ class NewGame extends Component {
 		const score = correctAnswers.length;
 
 		Swal.fire({
-            title: `Your final score is ${score}/${this.state.questionSet.length}`,
-            text: 'Would you like to save this game?',
-            type: 'success',
-            showCancelButton: true,
+			title: `Your final score is ${score}/${this.state.questionSet.length}`,
+			text: 'Would you like to save this game?',
+			type: 'success',
+			showCancelButton: true,
 			confirmButtonText: 'Save',
-			cancelButtonText: 'Start a new game'   
-        }).then((result) => {
-            if (result.value) {
-               saveGame(this.state.gameName, this.state.category, this.state.questionSet);
-               this.props.toggleGame('gameList');
-            } else {
+			cancelButtonText: 'Start a new game'
+		}).then(result => {
+			if (result.value) {
+				saveGame(
+					this.state.gameName,
+					this.state.category,
+					this.state.questionSet
+				);
+				this.props.toggleGame('gameList');
+			} else {
 				this.setState({
 					responseData: [],
 					choices: [],
@@ -175,11 +179,11 @@ class NewGame extends Component {
 					gameName: ''
 				});
 			}
-        })     
+		});
 	};
 
 	render() {
-		const { gameName, category, questionSet } = this.state;
+		const { questionSet } = this.state;
 
 		console.log('QUESTIONSET ', questionSet);
 
@@ -194,6 +198,7 @@ class NewGame extends Component {
 							name='gameName'
 							onChange={this.handleCriteria}
 							value={this.state.gameName}
+							required
 						/>
 
 						<label htmlFor='category'>Categories</label>

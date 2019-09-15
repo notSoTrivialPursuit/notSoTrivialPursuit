@@ -44,6 +44,7 @@ class SavedGame extends Component {
 
 	// Score game
 	submitAnswers = event => {
+		const form = event.target;
 		event.preventDefault();
 		const correctAnswers = this.state.questionSet.filter(userAnswer => {
 			return userAnswer.isCorrect;
@@ -54,23 +55,22 @@ class SavedGame extends Component {
 			title: `Your final score is ${score}/${this.state.questionSet.length}`,
 			text: 'Would you like to play again?',
 			type: 'success',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, play again',
-      cancelButtonText: 'No, play another game'
+			showCancelButton: true,
+			confirmButtonText: 'Yes, play again',
+			cancelButtonText: 'No, play another game'
 		}).then(result => {
 			if (result.value) {
-        // Reset game
-				
+				form.reset();
 			} else {
-        this.props.toggleGame('');
-      }
+				this.props.toggleGame('');
+			}
 		});
 	};
 
 	// Renders a form element with multiple divs (for each question) and 1 submit input
 	render() {
 		return (
-			<form action='' onSubmit={this.submitAnswers}>
+			<form action='' id='radioInputs' onSubmit={this.submitAnswers}>
 				<h1>{this.state.gameName}</h1>
 				<h2>Category: {this.state.category}</h2>
 				{this.state.questionSet.map((data, index) => {
@@ -101,6 +101,6 @@ class SavedGame extends Component {
 			</form>
 		);
 	}
-};
+}
 
 export default SavedGame;
