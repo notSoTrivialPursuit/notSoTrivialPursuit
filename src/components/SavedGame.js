@@ -62,7 +62,7 @@ class SavedGame extends Component {
         // Reset game
 				
 			} else {
-        this.props.toggleGame('gameList');
+        this.props.toggleGame('');
       }
 		});
 	};
