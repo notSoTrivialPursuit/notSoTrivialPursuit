@@ -20,7 +20,9 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			componentToShow: ''
+			componentToShow: '',
+			savedGameId: ''
+
 		};
 	}
 
@@ -37,6 +39,7 @@ class App extends Component {
 		} else if (this.state.componentToShow === 'gameList') {
 			return (
 				<GameList
+					selectSavedGame={this.selectSavedGame}
 					toggleGame={() => {
 						this.toggleGame('');
 					}}
@@ -45,6 +48,7 @@ class App extends Component {
 		} else if (this.state.componentToShow === 'savedGame') {
 			return (
 				<SavedGame
+					savedGameId={this.state.savedGameId}
 					toggleGame={() => {
 						this.toggleGame('');
 					}}
@@ -59,6 +63,13 @@ class App extends Component {
 			componentToShow: chosenGame
 		});
 	};
+
+	selectSavedGame = savedGameId => {
+		this.setState({
+			savedGameId: savedGameId,
+			componentToShow: 'savedGame'
+		})
+	}
 
 	render() {
 		return (
