@@ -184,7 +184,7 @@ class NewGame extends Component {
 	};
 
 	render() {
-		const { questionSet } = this.state;
+		const { questionSet, gameName, category } = this.state;
 
 		console.log('QUESTIONSET ', questionSet);
 
@@ -262,7 +262,6 @@ class NewGame extends Component {
 												name={uniqueKey}
 												id={`${uniqueKey}-${i}`}
 												value={choice}
-												required
 											/>
 											<label htmlFor={`${uniqueKey}-${i}`}>{choice}</label>
 										</div>
@@ -272,9 +271,20 @@ class NewGame extends Component {
 						);
 					})}
 					{this.state.questionSet.length ? (
-						<button className='formSubmit'>Submit</button>
+						<div className='buttons'>
+							<button className='formSubmit'>Submit</button>
+						</div>
 					) : null}
 				</form>
+				{this.state.questionSet.length ? (
+					<button
+						onClick={() => {
+							saveGame(gameName, category, questionSet);
+						}}
+					>
+						Save Game
+					</button>
+				) : null}
 			</div>
 		);
 	}
