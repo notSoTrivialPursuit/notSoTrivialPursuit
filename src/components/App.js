@@ -40,18 +40,12 @@ class App extends Component {
 			return (
 				<GameList
 					selectSavedGame={this.selectSavedGame}
-					toggleGame={() => {
-						this.toggleGame('');
-					}}
 				/>
 			);
 		} else if (this.state.componentToShow === 'savedGame') {
 			return (
 				<SavedGame
 					savedGameId={this.state.savedGameId}
-					toggleGame={() => {
-						this.toggleGame('');
-					}}
 				/>
 			);
 		}
@@ -75,6 +69,7 @@ class App extends Component {
 		return (
 			<div className='App'>
 				<Header />
+        <button onClick={() => this.toggleGame('')}>Play a different game</button>
 				<div className='wrapper'>
 					{/* New Game and Saved Game Buttons */}
 					{!this.state.componentToShow ? (
