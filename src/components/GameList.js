@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import firebase from "../firebase";
+import React, { Component } from 'react';
+import firebase from '../firebase';
 
 class GameList extends Component {
   constructor() {
@@ -9,10 +9,12 @@ class GameList extends Component {
     };
   }
 
+  // On mount, get the firebase data
+
   componentDidMount() {
     const dbRef = firebase.database().ref();
 
-    dbRef.on("value", data => {
+    dbRef.on('value', data => {
       const response = data.val();
 
       console.log(response);
@@ -22,9 +24,9 @@ class GameList extends Component {
       for (let key in response) {
         newState.push({
           id: key,
-          name: response[key].name,
+          gameName: response[key].gameName,
           category: response[key].category,
-          numQuestions: response[key].questions.length
+          numQuestions: response[key].questionSet.length
         });
       }
 
@@ -36,20 +38,24 @@ class GameList extends Component {
 
   render() {
     return (
-      <section className="existingGames">
+      <section className='existingGames'>
         <h1>List of Trivia Games</h1>
         <ul>
           {this.state.games.map(game => {
             console.log(this.state.games);
             return (
-              <li key={game.id}>
-                <p>{game.name}</p>
+              <li onClick={() => this.props.selectSavedGame(game.id)} key={game.id}>
+                <p>{game.gameName}</p>
                 <p>{game.category}</p>
                 <p>{game.numQuestions}</p>
               </li>
             );
           })}
         </ul>
+
+        <button type='submit' className='savedGame'>Click to Play</button>
+        <button className='exit'>Exit</button>
+
       </section>
     );
   }

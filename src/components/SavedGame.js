@@ -6,26 +6,24 @@ class SavedGame extends Component {
     super(props);
 
     this.state = {
-      questions: [],
-      answers: [],
+      questionSet: [],
+      gameName: '',
+      category: '',
       score: 0
     };
   };
 
   // On mount, get the Firebase data for 1 game
   componentDidMount() {
-    const gameRef = firebase.database().ref('game1');
+    const gameRef = firebase.database().ref(this.props.savedGameId);
 
     gameRef.once('value', response => {
-      const questions = response.val().questions;
-
-      // Creates the array of empty strings matching the number of questions
-      const answers = [];
-      questions.forEach(question => answers.push(false));
+      const gameObject = response.val();
 
       this.setState({
-        questions,
-        answers
+        questionSet: gameObject.questionSet,
+        gameName: gameObject.gameName,
+        category: gameObject.category
       });
     });
   };
@@ -34,50 +32,52 @@ class SavedGame extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const correctAnswers = this.state.answers.filter(answer => answer === 'true');
-
-    this.setState({
-      score: correctAnswers.length
-    });
+    // Display sweet alert showing score
+    console.log('Your final score:', this.state.score);
   };
 
   // Whenever user chooses a radio option, it updates the value in the answers array in state
   handleChange = (event) => {
-    const copiedAnswers = [...this.state.answers];
-    copiedAnswers.splice(event.target.name, 1, event.target.value)
-
-    this.setState({
-      answers: copiedAnswers
-    });
+    // Store answers...
   };
 
   // Renders a form element with multiple divs (for each question) and 1 submit input
   render() {
     return (
-      <form action='' className='questionsForm' onSubmit={this.handleSubmit}>
-        {this.state.questions.map((question, i) => {
-          return (
-            <div className='question' key={question.id} onChange={this.handleChange}>
-              <legend>{question.question}</legend>
-              
-              {question.choices.map((answer, j) => {
-                return (
-                  <label htmlFor={`question${i+1}Answer${j+1}`} key={j}>
-                    <input
-                      type='radio'
-                      name={i}
-                      id={`question${i+1}Answer${j+1}`}
-                      value={answer.status}
-                    />
-                    {answer.name}
-                  </label>
-                );
-              })}
-
-            </div>
-          );
-        })}
-        <input type='submit' value='Submit Answers' />
+      <form action='' onSubmit={this.handleSubmit}>
+        <h1>{this.state.gameName}</h1>
+        <h2>Category: {this.state.category}</h2>
+        {
+          this.state.questionSet.map((data, index) => {
+            return (
+              <div
+                key={index}
+                className='question'
+                onChange={this.handleChange}
+              >
+                <p>{index + 1}. {data.question}</p>
+                {
+                  data.choices.map((choice, i) => {
+                    const uniqueKey = `${index}`;
+                    console.log(uniqueKey);
+                    return (
+                      <div key={`${index}-${i}`}>
+                        <input
+                          type='radio'
+                          name={uniqueKey}
+                          id={`${uniqueKey}-${i}`}
+                          value={choice}
+                        />
+                        <label htmlFor={`${uniqueKey}-${i}`}>{choice}</label>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            )
+          })
+        }
+        <button className='formSubmit'>Submit</button>
       </form>
     );
   };
