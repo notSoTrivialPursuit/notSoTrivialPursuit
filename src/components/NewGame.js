@@ -160,7 +160,8 @@ class NewGame extends Component {
 			type: 'success',
 			showCancelButton: true,
 			confirmButtonText: 'Save',
-			cancelButtonText: 'Start a new game'
+			cancelButtonText: 'Start a new game',
+			allowOutsideClick: false
 		}).then(result => {
 			if (result.value) {
 				saveGame(
@@ -261,6 +262,7 @@ class NewGame extends Component {
 												name={uniqueKey}
 												id={`${uniqueKey}-${i}`}
 												value={choice}
+												required
 											/>
 											<label htmlFor={`${uniqueKey}-${i}`}>{choice}</label>
 										</div>
@@ -269,7 +271,9 @@ class NewGame extends Component {
 							</div>
 						);
 					})}
-					<button className='formSubmit'>Submit</button>
+					{this.state.questionSet.length ? (
+						<button className='formSubmit'>Submit</button>
+					) : null}
 				</form>
 			</div>
 		);
