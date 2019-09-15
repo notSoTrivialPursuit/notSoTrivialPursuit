@@ -10,3 +10,11 @@
 .existingGames {
     background: salmon;
 }
+
+button {
+  background: $orange;
+  border: none;
+  padding: 1rem;
+  color: $white;
+  margin: 0.5rem;
+}
