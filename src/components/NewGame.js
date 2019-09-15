@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import saveGame from '../helpers';
 
 class NewGame extends Component {
     constructor() {
@@ -36,7 +37,7 @@ class NewGame extends Component {
                 choices: choicesArray[index],
                 correctAnswer: this.htmlDecode(data.correct_answer),
                 userAnswer: '',
-                isCorrect: undefined
+                isCorrect: ''
             })
         })
 
@@ -78,6 +79,7 @@ class NewGame extends Component {
     }
 
     handleCriteria = (event) => {
+        console.log(event.target.id);
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -140,9 +142,7 @@ class NewGame extends Component {
     }
 
     render() {
-        console.log('RENDER');
-
-        const questionSet = this.state.questionSet;
+        const {gameName, category, questionSet} = this.state;
 
         console.log('QUESTIONSET ', questionSet);
 
@@ -150,38 +150,38 @@ class NewGame extends Component {
             <div className='newGameTrivia'>
                 <div className='criteria'>
                     <form onSubmit={this.handlePlay}>
-                    <label htmlFor='gameName'>Game Name</label>
-                    <input type='text' id='gameName' name='gameName' onChange={this.handleCriteria}/>
+                        <label htmlFor='gameName'>Game Name</label>
+                        <input type='text' id='gameName' name='gameName' onChange={this.handleCriteria} />
 
-                    <label htmlFor='category'>Categories</label>
-                    <select name='category' id='category' onChange={this.handleCriteria} required>
-                        <option value=''>Choose one</option>
-                        <option value='27'>Animals</option>
-                        <option value='25'>Art</option>
-                        <option value='9'>General Knowledge</option>
-                        <option value='22'>Geography</option>
-                        <option value='23'>History</option>
-                        <option value='11'>Movies</option>
-                        <option value='17'>Science and Nature</option>
-                        <option value='21'>Sports</option>
-                    </select>
+                        <label htmlFor='category'>Categories</label>
+                        <select name='category' id='category' onChange={this.handleCriteria} required>
+                            <option value=''>Choose one</option>
+                            <option value='27'>Animals</option>
+                            <option value='25'>Art</option>
+                            <option value='9'>General Knowledge</option>
+                            <option value='22'>Geography</option>
+                            <option value='23'>History</option>
+                            <option value='11'>Movies</option>
+                            <option value='17'>Science and Nature</option>
+                            <option value='21'>Sports</option>
+                        </select>
 
-                    <label htmlFor='numQuestions'>Number of Questions</label>
-                    <select 
-                        name='numQuestions' 
-                        id='numQuestions' 
-                        className='numQuestions'
-                        onChange={this.handleCriteria}
-                        required>
-                        <option value='10'>10</option>
-                        <option value='15'>15</option>
-                        <option value='20'>20</option>
-                    </select>
+                        <label htmlFor='numQuestions'>Number of Questions</label>
+                        <select
+                            name='numQuestions'
+                            id='numQuestions'
+                            className='numQuestions'
+                            onChange={this.handleCriteria}
+                            required>
+                            <option value='10'>10</option>
+                            <option value='15'>15</option>
+                            <option value='20'>20</option>
+                        </select>
 
-                    <button type='submit' className='playGame' >
-                        Let's play
+                        <button type='submit' className='playGame' >
+                            Let's play
                 </button>
-                </form>
+                    </form>
                 </div>
 
                 <form action='' onSubmit={this.handleSubmit}>
@@ -218,7 +218,7 @@ class NewGame extends Component {
                     <button className='formSubmit'>Submit</button>
                 </form>
 
-                <button>Save the game</button>
+                <button onClick={() => saveGame(gameName, category, questionSet)}>Save the game</button>
                 <button>Exit</button>
             </div>
         )
