@@ -7,15 +7,6 @@ import '.././styles/App.scss';
 import '../components/NewGame';
 import NewGame from '../components/NewGame';
 
-// placeholder functional components
-// const NewGame = () => {
-// 	return <h2>New Game here</h2>;
-// };
-
-// const GameList = () => {
-// 	return <h2>Saved Game List here</h2>;
-// };
-
 class App extends Component {
 	constructor() {
 		super();
@@ -31,9 +22,7 @@ class App extends Component {
 		if (this.state.componentToShow === 'newGame') {
 			return (
 				<NewGame
-					toggleGame={() => {
-						this.toggleGame('');
-					}}
+					toggleGame={this.toggleGame}
 				/>
 			);
 		} else if (this.state.componentToShow === 'gameList') {
@@ -46,6 +35,7 @@ class App extends Component {
 			return (
 				<SavedGame
 					savedGameId={this.state.savedGameId}
+					toggleGame={this.toggleGame}
 				/>
 			);
 		}
