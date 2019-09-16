@@ -39,7 +39,22 @@ class SavedGame extends Component {
 
 	// Whenever user chooses a radio option, it updates the value in the answers array in state
 	handleChange = event => {
-		// Store answers...
+		// ToDo: Refactor this code and make this as a function so that both newGame and SavedGame can just call that function
+		const questionSetCopy = [...this.state.questionSet];
+
+		// Update the userAnswer property value with what the user selected answer
+		const obj = questionSetCopy[event.target.name];
+		obj.userAnswer = event.target.value;
+
+		if (obj.userAnswer === obj.correctAnswer) {
+			obj.isCorrect = true;
+		} else {
+			obj.isCorrect = false;
+		}
+
+		this.setState({
+			questionSet: questionSetCopy
+		});
 	};
 
 	// Score game
