@@ -191,49 +191,55 @@ class NewGame extends Component {
 		return (
 			<div className='newGameTrivia'>
 				<div className='criteria'>
-					<form onSubmit={this.handlePlay}>
-						<label htmlFor='gameName'>Game Name</label>
-						<input
-							type='text'
-							id='gameName'
-							name='gameName'
-							onChange={this.handleCriteria}
-							value={this.state.gameName}
-							required
-						/>
+					<form onSubmit={this.handlePlay} className='criteria'>
+						<div>
+							<label htmlFor='gameName'>Game Name</label>
+							<input
+								type='text'
+								id='gameName'
+								name='gameName'
+								onChange={this.handleCriteria}
+								value={this.state.gameName}
+								required
+							/>
+						</div>
 
-						<label htmlFor='category'>Categories</label>
-						<select
-							name='category'
-							id='category'
-							onChange={this.handleCriteria}
-							required
-							value={this.state.category}
-						>
-							<option value=''>Choose one</option>
-							<option value='27'>Animals</option>
-							<option value='25'>Art</option>
-							<option value='9'>General Knowledge</option>
-							<option value='22'>Geography</option>
-							<option value='23'>History</option>
-							<option value='11'>Movies</option>
-							<option value='17'>Science and Nature</option>
-							<option value='21'>Sports</option>
-						</select>
+						<div>
+							<label htmlFor='category'>Categories</label>
+							<select
+								name='category'
+								id='category'
+								onChange={this.handleCriteria}
+								required
+								value={this.state.category}
+							>
+								<option value=''>Choose one</option>
+								<option value='27'>Animals</option>
+								<option value='25'>Art</option>
+								<option value='9'>General Knowledge</option>
+								<option value='22'>Geography</option>
+								<option value='23'>History</option>
+								<option value='11'>Movies</option>
+								<option value='17'>Science and Nature</option>
+								<option value='21'>Sports</option>
+							</select>
+						</div>	
 
-						<label htmlFor='numQuestions'>Number of Questions</label>
-						<select
-							name='numQuestions'
-							id='numQuestions'
-							className='numQuestions'
-							onChange={this.handleCriteria}
-							required
-							value={this.state.numQuestions}
-						>
-							<option value='10'>10</option>
-							<option value='15'>15</option>
-							<option value='20'>20</option>
-						</select>
+						<div>
+							<label htmlFor='numQuestions'>Number of Questions</label>
+							<select
+								name='numQuestions'
+								id='numQuestions'
+								className='numQuestions'
+								onChange={this.handleCriteria}
+								required
+								value={this.state.numQuestions}
+							>
+								<option value='10'>10</option>
+								<option value='15'>15</option>
+								<option value='20'>20</option>
+							</select>
+						</div>
 
 						<button type='submit' className='playGame'>
 							Let's play
