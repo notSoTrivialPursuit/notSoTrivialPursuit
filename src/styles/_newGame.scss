@@ -1,27 +1,47 @@
 form.criteria {
     display: flex;
     flex-direction: column;
+
+    div {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      font-size: 2rem;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
 }
 
-form.criteria select, form.criteria input {
+form.criteria input, form.criteria select {
   border: 0.05rem solid $red;
   width: 100%;
   display: block;
 }
 
+form.criteria input {
+    font-size: 2rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+    padding-left: 0.5rem;
+
+    &:focus {
+      border: 0.1rem solid $orange;
+    }
+}
+
 form.criteria select {
     font-size: 1.6rem;
-    font-family: sans-serif;
-    font-weight: 700;
-    color: #444;
+    font-family: $baseFont;
+    color: $orange;
     line-height: 1.3;
     padding: .6rem 1.4rem .5rem .8rem;
     max-width: 100%; 
     box-sizing: border-box;
     margin: 0;
     // border: none;
-    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
-    border-radius: .5rem;
+    box-shadow: 0 0.1rem 0 0.1rem rgba(0,0,0,.04);
+    border-radius: 0.5rem;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -33,23 +53,6 @@ form.criteria select {
     background-size: .65rem auto, 100%;
 
     &:focus {
-        // Style when focused
+      border: 0.1rem solid $orange;
     }
-}
-
-form.criteria input {
-    height: 3rem;
-    width: 15rem;
-    font-size: 1.8rem;
-    // border: 1px solid transparent;
-    border-radius: 0.5rem;
-    padding-left: 0.5rem;
-
-    &:focus {
-        // Style when focused
-    }
-}
-
-form.criteria label {
-    
 }
