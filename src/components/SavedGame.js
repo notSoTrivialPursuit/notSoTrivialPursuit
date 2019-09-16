@@ -86,7 +86,7 @@ class SavedGame extends Component {
 	// Renders a form element with multiple divs (for each question) and 1 submit input
 	render() {
 		return (
-			<form action='' id='radioInputs' onSubmit={this.submitAnswers}>
+			<form className='savedGame' action='' id='radioInputs' onSubmit={this.submitAnswers}>
 				<h1>{this.state.gameName}</h1>
 				<h2>Category: {this.state.category}</h2>
 				{this.state.questionSet.map((data, index) => {

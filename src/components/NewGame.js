@@ -149,6 +149,40 @@ class NewGame extends Component {
 	// score quiz once answers are submitted
 	submitAnswers = event => {
 		event.preventDefault();
+<<<<<<< HEAD
+		const correctAnswers = this.state.questionSet.filter(userAnswer => {
+			return userAnswer.isCorrect;
+		});
+		const score = correctAnswers.length;
+
+		Swal.fire({
+			title: `Your final score is ${score}/${this.state.questionSet.length}`,
+			text: 'Would you like to save this game?',
+			type: 'info',
+			showCancelButton: true,
+			confirmButtonText: 'Save',
+			cancelButtonText: 'Start a new game',
+			allowOutsideClick: false
+		}).then(result => {
+			if (result.value) {
+				saveGame(
+					this.state.gameName,
+					this.state.category,
+					this.state.questionSet
+				);
+				this.props.toggleGame('gameList');
+			} else {
+				this.setState({
+					responseData: [],
+					choices: [],
+					questionSet: [],
+					category: '',
+					numQuestions: 10,
+					gameName: ''
+				});
+			}
+		});
+=======
 
 		// We need to validate if the user answered all the questions so filter the questionSet objects that have userAnswer values
 		const answeredQuestions = this.state.questionSet.filter( (obj) => {
@@ -196,6 +230,7 @@ class NewGame extends Component {
 				}
 			});
 		}
+>>>>>>> master
 	};
 
 	render() {
@@ -205,7 +240,7 @@ class NewGame extends Component {
 
 		return (
 			<div className='newGameTrivia'>
-				<div className='criteria'>
+				<div className='wrapper'>
 					<form onSubmit={this.handlePlay} className='criteria'>
 						<div>
 							<label htmlFor='gameName'>Game Name</label>
@@ -213,9 +248,10 @@ class NewGame extends Component {
 								type='text'
 								id='gameName'
 								name='gameName'
+								placeholder='Enter name here'
 								onChange={this.handleCriteria}
 								value={this.state.gameName}
-								required
+							// required
 							/>
 						</div>
 
@@ -260,51 +296,60 @@ class NewGame extends Component {
 							Let's play
 						</button>
 					</form>
-				</div>
 
-				<form action='' onSubmit={this.submitAnswers}>
-					{questionSet.map((data, index) => {
-						return (
-							<div
-								key={index}
-								className='question'
-								onChange={this.handleChange}
-							>
-								<p>
-									{index + 1}. {data.question}
-								</p>
-								{data.choices.map((choice, i) => {
-									const uniqueKey = `${index}`;
-									return (
-										<div key={`${index}-${i}`}>
-											<input
-												type='radio'
-												name={uniqueKey}
-												id={`${uniqueKey}-${i}`}
-												value={choice}
-											/>
-											<label htmlFor={`${uniqueKey}-${i}`}>{choice}</label>
-										</div>
-									);
-								})}
+					<form action='' onSubmit={this.submitAnswers}>
+						{questionSet.map((data, index) => {
+							return (
+								<div
+									key={index}
+									className='question'
+									onChange={this.handleChange}
+								>
+									<h2>
+										{index + 1}. {data.question}
+									</h2>
+									<div className="choices">
+										{data.choices.map((choice, i) => {
+											const uniqueKey = `${index}`;
+											console.log(uniqueKey);
+											return (
+												<div key={`${index}-${i}`}>
+													<input
+														type='radio'
+														name={uniqueKey}
+														id={`${uniqueKey}-${i}`}
+														value={choice}
+														className='radioButton'
+													/>
+													<span className='checkMark'></span>
+													<label
+														htmlFor={`${uniqueKey}-${i}`}
+														className='labelRadioContainer'>
+														{choice}
+													</label>
+												</div>
+											);
+										})}
+									</div>
+								</div>
+							);
+						})}
+						{this.state.questionSet.length ? (
+							<div className='buttons'>
+								<button className='formSubmit'>Submit</button>
 							</div>
-						);
-					})}
+						) : null}
+					</form>
 					{this.state.questionSet.length ? (
-						<div className='buttons'>
-							<button className='formSubmit'>Submit</button>
-						</div>
-					) : null}
-				</form>
-				{this.state.questionSet.length ? (
-					<button
-						onClick={() => {
-							saveGame(gameName, category, questionSet);
-						}}
-					>
-						Save Game
+						<button
+							onClick={() => {
+								saveGame(gameName, category, questionSet);
+							}}
+						>
+							Save Game
 					</button>
-				) : null}
+					) : null}
+				</div>
 			</div>
 		);
 	}
