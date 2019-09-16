@@ -149,6 +149,7 @@ class NewGame extends Component {
 	// score quiz once answers are submitted
 	submitAnswers = event => {
 		event.preventDefault();
+<<<<<<< HEAD
 		const correctAnswers = this.state.questionSet.filter(userAnswer => {
 			return userAnswer.isCorrect;
 		});
@@ -181,6 +182,55 @@ class NewGame extends Component {
 				});
 			}
 		});
+=======
+
+		// We need to validate if the user answered all the questions so filter the questionSet objects that have userAnswer values
+		const answeredQuestions = this.state.questionSet.filter( (obj) => {
+			return obj.userAnswer !== '';
+		})
+
+		// Show error if the user did not answer all the questions. Otherwise, show the score
+		if (answeredQuestions.length !== this.state.numQuestions) {
+			Swal.fire({
+				title: 'Please answer all the questions before submitting.',
+				type: 'error',
+				allowOutsideClick: false
+			})
+		} else {
+			const correctAnswers = this.state.questionSet.filter(userAnswer => {
+				return userAnswer.isCorrect;
+			});
+			const score = correctAnswers.length;
+
+			Swal.fire({
+				title: `Your final score is ${score}/${this.state.questionSet.length}`,
+				text: 'Would you like to save this game?',
+				type: 'success',
+				showCancelButton: true,
+				confirmButtonText: 'Save',
+				cancelButtonText: 'Start a new game',
+				allowOutsideClick: false
+			}).then(result => {
+				if (result.value) {
+					saveGame(
+						this.state.gameName,
+						this.state.category,
+						this.state.questionSet
+					);
+					this.props.toggleGame('gameList');
+				} else {
+					this.setState({
+						responseData: [],
+						choices: [],
+						questionSet: [],
+						category: '',
+						numQuestions: 10,
+						gameName: ''
+					});
+				}
+			});
+		}
+>>>>>>> master
 	};
 
 	render() {
@@ -224,7 +274,7 @@ class NewGame extends Component {
 								<option value='17'>Science and Nature</option>
 								<option value='21'>Sports</option>
 							</select>
-						</div>
+            </div>
 
 						<div>
 							<label htmlFor='numQuestions'>Number of Questions</label>
