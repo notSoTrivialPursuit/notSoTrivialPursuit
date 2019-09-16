@@ -149,40 +149,6 @@ class NewGame extends Component {
 	// score quiz once answers are submitted
 	submitAnswers = event => {
 		event.preventDefault();
-<<<<<<< HEAD
-		const correctAnswers = this.state.questionSet.filter(userAnswer => {
-			return userAnswer.isCorrect;
-		});
-		const score = correctAnswers.length;
-
-		Swal.fire({
-			title: `Your final score is ${score}/${this.state.questionSet.length}`,
-			text: 'Would you like to save this game?',
-			type: 'info',
-			showCancelButton: true,
-			confirmButtonText: 'Save',
-			cancelButtonText: 'Start a new game',
-			allowOutsideClick: false
-		}).then(result => {
-			if (result.value) {
-				saveGame(
-					this.state.gameName,
-					this.state.category,
-					this.state.questionSet
-				);
-				this.props.toggleGame('gameList');
-			} else {
-				this.setState({
-					responseData: [],
-					choices: [],
-					questionSet: [],
-					category: '',
-					numQuestions: 10,
-					gameName: ''
-				});
-			}
-		});
-=======
 
 		// We need to validate if the user answered all the questions so filter the questionSet objects that have userAnswer values
 		const answeredQuestions = this.state.questionSet.filter( (obj) => {
@@ -230,7 +196,6 @@ class NewGame extends Component {
 				}
 			});
 		}
->>>>>>> master
 	};
 
 	render() {
