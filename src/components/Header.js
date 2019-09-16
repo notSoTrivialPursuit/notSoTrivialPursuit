@@ -1,8 +1,8 @@
 import React from "react";
 
-const Header = () => {
+const Header = (props) => {
 	return (
-		<header>
+		<header className={props.className}>
 			<h1>Not So Trivial Pursuit</h1>
 		</header>
 	);

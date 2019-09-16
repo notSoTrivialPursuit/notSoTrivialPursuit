@@ -1,0 +1,36 @@
+button {
+  background: $orange;
+  color: $white;
+  font-family: $headingFont;
+  font-size: 2.5rem;
+  letter-spacing: 0.2rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: block;
+  margin: 1rem auto;
+
+  &:hover, &:focus {
+    background: $black;
+    // background: none;
+    color: $yellow;
+    box-shadow: 0 0 0 0.5rem $yellow;
+  }
+}
+
+.gameButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  button {
+    font-size: 3rem;
+    padding: 1rem 1.5rem;
+  }
+}
+
+.exitGame {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}

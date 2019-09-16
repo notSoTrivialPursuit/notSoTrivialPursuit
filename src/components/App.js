@@ -58,9 +58,12 @@ class App extends Component {
 	render() {
 		return (
 			<div className='App'>
-				<Header />
-        <button onClick={() => this.toggleGame('')}>Play a different game</button>
+				{/* <a href="#main" className="skip-link">Skip to main content.</a> */}
+
 				<div className='wrapper'>
+					<Header className={this.state.componentToShow ? 'smallHeader' : 'largeHeader'} />
+
+
 					{/* New Game and Saved Game Buttons */}
 					{!this.state.componentToShow ? (
 						<section className='gameButtons'>
@@ -68,15 +71,17 @@ class App extends Component {
 								New Game
 							</button>
 							<button type='submit' onClick={() => this.toggleGame('gameList')}>
-								Saved Game List
+								Saved Games
 							</button>
 						</section>
-					) : null}
+					) : (
+							<button className='exitGame' onClick={() => this.toggleGame('')}>X</button>
+						)}
 
 					{this.renderComponent()}
-				</div>
 
-				<Footer />
+					<Footer />
+				</div>
 			</div>
 		);
 	}

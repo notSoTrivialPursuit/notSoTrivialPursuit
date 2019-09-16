@@ -1,21 +1,33 @@
 @import 'setup';
 @import 'variablesAndMixins';
 @import 'global';
+@import 'buttons';
 @import 'header';
 @import 'footer';
 @import 'newGame';
 
 
 .question,
-.criteria,
+div.criteria,
 .existingGames {
-    background: salmon;
+    background: $white;
+    // border: 1rem solid $red;
+    border-radius: 1rem;
 }
 
-button {
-  background: $orange;
-  border: none;
-  padding: 1rem;
-  color: $white;
-  margin: 0.5rem;
+html, body, #root, .App, .App .wrapper {
+  height: 100%;
+}
+
+.App .wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.gameButtons {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
 }
