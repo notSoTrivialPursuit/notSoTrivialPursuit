@@ -30,8 +30,9 @@ button {
 }
 
 .exitGame {
-  position: absolute;
-  top: 15rem;
-  right: 0;
+  position: relative;
+  top: 6rem;
+  left: 48%;
+  border-radius: 50%;
+  line-height: 1.8rem;
 }
-

@@ -43,25 +43,25 @@ class GameList extends Component {
 	render() {
 		return (
 			<section className='existingGames'>
-				<h2>List of Trivia Games</h2>
-				<ul>
-					{this.state.games.map(game => {
-						console.log(this.state.games);
-						return (
-							<li
-								className='existingGame'
-								onClick={() => this.props.selectSavedGame(game.id)}
-								key={game.id}
-							>
-								<h3>{game.gameName}</h3>
-								<p>Category: {game.category}</p>
-								<p>Number of questions: {game.numQuestions}</p>
-							</li>
-						);
-					})}
-				</ul>
-
-				<button className='exit'>Exit</button>
+				<div className="wrapper">
+					<h2>Saved Games</h2>
+					<ul>
+						{this.state.games.map(game => {
+							console.log(this.state.games);
+							return (
+								<li
+									className='existingGame'
+									onClick={() => this.props.selectSavedGame(game.id)}
+									key={game.id}
+								>
+									<h3>{game.gameName}</h3>
+									<p>Category: {game.category}</p>
+									<p>Number of questions: {game.numQuestions}</p>
+								</li>
+							);
+						})}
+					</ul>
+				</div>
 			</section>
 		);
 	}

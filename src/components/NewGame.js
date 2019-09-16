@@ -231,7 +231,6 @@ class NewGame extends Component {
 							>
 								<option value=''>Choose one</option>
 								<option value='27'>Animals</option>
-								<option value='25'>Art</option>
 								<option value='9'>General Knowledge</option>
 								<option value='22'>Geography</option>
 								<option value='23'>History</option>
