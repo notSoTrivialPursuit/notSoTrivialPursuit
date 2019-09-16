@@ -24,6 +24,7 @@ const saveGame = (gameName, category, questionSet) => {
 	const newGameRef = dbRef.push();
 	newGameRef.set({
 		id: newGameRef.key,
+		created: Date.now(),
 		...newGameObject
 	});
 

@@ -1,5 +1,13 @@
-.existingGames h1{
+.existingGames { 
+  h2 {
     font-size:5rem;
-    color:red;
+  }
+}
 
+.existingGame {
+  padding: 1rem;
+}
+
+.existingGame:nth-child(odd) {
+  background: whitesmoke;
 }

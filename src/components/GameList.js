@@ -24,11 +24,15 @@ class GameList extends Component {
 			for (let key in response) {
 				newState.push({
 					id: key,
+					created: response[key].created,
 					gameName: response[key].gameName,
 					category: response[key].category,
 					numQuestions: response[key].questionSet.length
 				});
 			}
+
+			// Sorts games from newest to oldest
+			newState.sort((a, b) => a.created < b.created);
 
 			this.setState({
 				games: newState
@@ -39,18 +43,19 @@ class GameList extends Component {
 	render() {
 		return (
 			<section className='existingGames'>
-				<h1>List of Trivia Games</h1>
+				<h2>List of Trivia Games</h2>
 				<ul>
 					{this.state.games.map(game => {
 						console.log(this.state.games);
 						return (
 							<li
+								className='existingGame'
 								onClick={() => this.props.selectSavedGame(game.id)}
 								key={game.id}
 							>
-								<p>{game.gameName}</p>
-								<p>{game.category}</p>
-								<p>{game.numQuestions}</p>
+								<h3>{game.gameName}</h3>
+								<p>Category: {game.category}</p>
+								<p>Number of questions: {game.numQuestions}</p>
 							</li>
 						);
 					})}
