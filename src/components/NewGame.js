@@ -151,7 +151,7 @@ class NewGame extends Component {
 		event.preventDefault();
 
 		// We need to validate if the user answered all the questions so filter the questionSet objects that have userAnswer values
-		const answeredQuestions = this.state.questionSet.filter( (obj) => {
+		const answeredQuestions = this.state.questionSet.filter((obj) => {
 			return obj.userAnswer !== '';
 		})
 
@@ -239,7 +239,7 @@ class NewGame extends Component {
 								<option value='17'>Science and Nature</option>
 								<option value='21'>Sports</option>
 							</select>
-            </div>
+						</div>
 
 						<div>
 							<label htmlFor='numQuestions'>Number of Questions</label>
