@@ -1,17 +1,23 @@
 header {
-	background: rgba(0, 0, 0, 0.8) fixed;
-	// background: $black;
-	padding-top: 8rem;
-	border: 1px solid white;
+  padding: 5rem 0 2rem;
 }
 
 h1 {
-	font-family: $headingFont;
-	color: $yellow;
-	font-size: 9.6rem;
-	line-height: 1;
-	margin-top: 0;
-	text-align: center;
-	text-shadow: 0.5rem 0.5rem $orange;
-	text-transform: uppercase;
+  text-transform: uppercase;
+  text-shadow: 0.5rem 0.5rem $orange;
+  color: $yellow;
+  font-family: $headingFont;
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.largeHeader h1 {
+  font-size: 7.5rem;
+}
+
+.smallHeader h1 {
+  font-size: 4rem;
+  text-shadow: 0.25rem 0.25rem $orange;
 }
