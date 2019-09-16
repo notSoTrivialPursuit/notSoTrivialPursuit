@@ -157,7 +157,7 @@ class NewGame extends Component {
 		Swal.fire({
 			title: `Your final score is ${score}/${this.state.questionSet.length}`,
 			text: 'Would you like to save this game?',
-			type: 'success',
+			type: 'info',
 			showCancelButton: true,
 			confirmButtonText: 'Save',
 			cancelButtonText: 'Start a new game',
@@ -198,9 +198,10 @@ class NewGame extends Component {
 								type='text'
 								id='gameName'
 								name='gameName'
+								placeholder='Enter name here'
 								onChange={this.handleCriteria}
 								value={this.state.gameName}
-								required
+							// required
 							/>
 						</div>
 
@@ -254,24 +255,32 @@ class NewGame extends Component {
 									className='question'
 									onChange={this.handleChange}
 								>
-									<p>
+									<h2>
 										{index + 1}. {data.question}
-									</p>
-									{data.choices.map((choice, i) => {
-										const uniqueKey = `${index}`;
-										console.log(uniqueKey);
-										return (
-											<div key={`${index}-${i}`}>
-												<input
-													type='radio'
-													name={uniqueKey}
-													id={`${uniqueKey}-${i}`}
-													value={choice}
-												/>
-												<label htmlFor={`${uniqueKey}-${i}`}>{choice}</label>
-											</div>
-										);
-									})}
+									</h2>
+									<div className="choices">
+										{data.choices.map((choice, i) => {
+											const uniqueKey = `${index}`;
+											console.log(uniqueKey);
+											return (
+												<div key={`${index}-${i}`}>
+													<input
+														type='radio'
+														name={uniqueKey}
+														id={`${uniqueKey}-${i}`}
+														value={choice}
+														className='radioButton'
+													/>
+													<span className='checkMark'></span>
+													<label
+														htmlFor={`${uniqueKey}-${i}`}
+														className='labelRadioContainer'>
+														{choice}
+													</label>
+												</div>
+											);
+										})}
+									</div>
 								</div>
 							);
 						})}
