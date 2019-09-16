@@ -190,7 +190,7 @@ class NewGame extends Component {
 
 		return (
 			<div className='newGameTrivia'>
-				<div className='criteria'>
+				<div className='wrapper'>
 					<form onSubmit={this.handlePlay} className='criteria'>
 						<div>
 							<label htmlFor='gameName'>Game Name</label>
@@ -223,7 +223,7 @@ class NewGame extends Component {
 								<option value='17'>Science and Nature</option>
 								<option value='21'>Sports</option>
 							</select>
-						</div>	
+						</div>
 
 						<div>
 							<label htmlFor='numQuestions'>Number of Questions</label>
@@ -245,52 +245,52 @@ class NewGame extends Component {
 							Let's play
 						</button>
 					</form>
-				</div>
 
-				<form action='' onSubmit={this.submitAnswers}>
-					{questionSet.map((data, index) => {
-						return (
-							<div
-								key={index}
-								className='question'
-								onChange={this.handleChange}
-							>
-								<p>
-									{index + 1}. {data.question}
-								</p>
-								{data.choices.map((choice, i) => {
-									const uniqueKey = `${index}`;
-									console.log(uniqueKey);
-									return (
-										<div key={`${index}-${i}`}>
-											<input
-												type='radio'
-												name={uniqueKey}
-												id={`${uniqueKey}-${i}`}
-												value={choice}
-											/>
-											<label htmlFor={`${uniqueKey}-${i}`}>{choice}</label>
-										</div>
-									);
-								})}
+					<form action='' onSubmit={this.submitAnswers}>
+						{questionSet.map((data, index) => {
+							return (
+								<div
+									key={index}
+									className='question'
+									onChange={this.handleChange}
+								>
+									<p>
+										{index + 1}. {data.question}
+									</p>
+									{data.choices.map((choice, i) => {
+										const uniqueKey = `${index}`;
+										console.log(uniqueKey);
+										return (
+											<div key={`${index}-${i}`}>
+												<input
+													type='radio'
+													name={uniqueKey}
+													id={`${uniqueKey}-${i}`}
+													value={choice}
+												/>
+												<label htmlFor={`${uniqueKey}-${i}`}>{choice}</label>
+											</div>
+										);
+									})}
+								</div>
+							);
+						})}
+						{this.state.questionSet.length ? (
+							<div className='buttons'>
+								<button className='formSubmit'>Submit</button>
 							</div>
-						);
-					})}
+						) : null}
+					</form>
 					{this.state.questionSet.length ? (
-						<div className='buttons'>
-							<button className='formSubmit'>Submit</button>
-						</div>
-					) : null}
-				</form>
-				{this.state.questionSet.length ? (
-					<button
-						onClick={() => {
-							saveGame(gameName, category, questionSet);
-						}}
-					>
-						Save Game
+						<button
+							onClick={() => {
+								saveGame(gameName, category, questionSet);
+							}}
+						>
+							Save Game
 					</button>
-				) : null}
+					) : null}
+				</div>
 			</div>
 		);
 	}

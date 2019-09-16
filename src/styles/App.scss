@@ -7,12 +7,12 @@
 @import 'newGame';
 
 
-.question,
-div.criteria,
-.existingGames {
+.newGameTrivia,
+.existingGames,
+.savedGame {
     background: $white;
-    // border: 1rem solid $red;
     border-radius: 1rem;
+    padding: 2rem 0;
 }
 
 html, body, #root, .App, .App .wrapper {
