@@ -167,7 +167,7 @@ class NewGame extends Component {
 				return userAnswer.isCorrect;
 			});
 			const score = correctAnswers.length;
-	
+
 			Swal.fire({
 				title: `Your final score is ${score}/${this.state.questionSet.length}`,
 				text: 'Would you like to save this game?',
@@ -238,7 +238,7 @@ class NewGame extends Component {
 								<option value='17'>Science and Nature</option>
 								<option value='21'>Sports</option>
 							</select>
-						</div>	
+            </div>
 
 						<div>
 							<label htmlFor='numQuestions'>Number of Questions</label>
