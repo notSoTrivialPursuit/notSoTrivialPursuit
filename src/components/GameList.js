@@ -43,7 +43,7 @@ class GameList extends Component {
 	render() {
 		return (
 			<section className='gameListSection'>
-        <button className='returnHome' onClick={() => this.props.toggleGame('')}>X</button>
+        <button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
 
         <div className="gameListHeading">
           <div className="wrapper">

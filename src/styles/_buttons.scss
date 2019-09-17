@@ -1,4 +1,4 @@
-button {
+.button {
   background: $buttonColor;
   color: $white;
   font-family: $headingFont;
@@ -23,7 +23,7 @@ button {
   flex-direction: column;
   justify-content: center;
 
-  button {
+  .button {
     font-size: 3rem;
     padding: 1rem 1.5rem;
   }

@@ -87,7 +87,7 @@ class SavedGame extends Component {
 	render() {
 		return (
 			<form className='savedGame' action='' id='radioInputs' onSubmit={this.submitAnswers}>
-        <button className='returnHome' onClick={() => this.props.toggleGame('')}>X</button>
+        <button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
         
         <div className="gameHeading">
           <div className="wrapper">
