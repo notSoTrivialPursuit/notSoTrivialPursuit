@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../firebase.js';
 import Preloader from './Preloader';
 import Swal from 'sweetalert2';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { handleChoiceSelection, showIcon } from '../helpers.js';
 
 class SavedGame extends Component {
 	constructor(props) {
@@ -34,25 +34,10 @@ class SavedGame extends Component {
 
 	// Whenever user chooses a radio option, it updates the value in the answers array in state
 	handleChange = event => {
-		// ToDo: Refactor this code and make this as a function so that both newGame and SavedGame can just call that function
-		const questionSetCopy = [...this.state.questionSet];
-
-		// Update the userAnswer property value with what the user selected answer
-		const obj = questionSetCopy[event.target.name];
-		obj.userAnswer = event.target.value;
-
-		if (obj.userAnswer === obj.correctAnswer) {
-			obj.isCorrect = true;
-		} else {
-			obj.isCorrect = false;
-		}
-
-		this.setState({
-			questionSet: questionSetCopy
-		});
+		handleChoiceSelection(this, event);
 	};
 
-	// Score game
+	// score quiz once answers are submitted
 	submitAnswers = event => {
 		event.preventDefault();
 
@@ -89,28 +74,6 @@ class SavedGame extends Component {
 			}
 		});
 	};
-
-	showIcon = (userAnswer, rightAnswer, choice) => {
-		if (this.state.isSubmitted) {
-			if (rightAnswer === choice) {
-				return (
-					<FontAwesomeIcon
-						icon='check'
-						className='answerIcon'
-						aria-hidden />
-				)
-			} else if (userAnswer === choice) {
-				return (
-					<FontAwesomeIcon
-						icon='times'
-						className='answerIcon'
-						aria-hidden />
-				)
-			}
-		} else {
-			return ''
-		}
-	}
 
 	// Renders a form element with multiple divs (for each question) and 1 submit input
 	render() {
@@ -157,7 +120,8 @@ class SavedGame extends Component {
 														{choice}
 
 														{
-															this.showIcon(data.userAnswer, data.correctAnswer, choice)
+
+															showIcon(this, data.userAnswer, data.correctAnswer, choice)
 														}
 
 													</label>
