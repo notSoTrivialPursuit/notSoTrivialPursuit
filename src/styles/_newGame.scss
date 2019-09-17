@@ -14,25 +14,25 @@ form.criteria > .wrapper {
   }
   
   form.criteria input, form.criteria select {
-    color: $orange;
-    background: $white;
-    border: 0.05rem solid $red;
-    width: 100%;
-    display: block;
-    line-height: 1.3;
-    padding: 0.6rem 1.4rem 0.5rem 0.8rem;
-    border-radius: 0.5rem;
-    font-size: 1.6rem;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
+    color: $buttonColor;
+  background: $white;
+  border: 0.05rem solid $textColor;
+  width: 100%;
+  display: block;
+  line-height: 1.3;
+  padding: 0.6rem 1.4rem 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 form.criteria input {
   font-size: 1.8rem;
 
   &:focus {
-      border: 0.1rem solid $orange;
+      border: 0.1rem solid $buttonColor;
     }
 }
 
@@ -44,14 +44,14 @@ form.criteria select {
     background-size: .65rem auto, 100%;
     
     &:focus {
-      border: 0.1rem solid $orange;
+      border: 0.1rem solid $buttonColor;
     }
 }
 
 .question {
   h2 {
     font-size: 2.5rem;
-    color: $orange;
+    color: $buttonColor;
     margin-top: 1rem;
   }
 }
@@ -65,7 +65,7 @@ form.criteria select {
     
     &:hover,
     &:focus {
-      background: $yellow;
+      background: $hoverColor;
       border-radius: 1rem;
     }
   }
