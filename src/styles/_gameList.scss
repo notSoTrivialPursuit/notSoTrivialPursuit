@@ -1,5 +1,21 @@
-.existingGames h1{
+.existingGames { 
+  h2 {
     font-size:5rem;
-    color:red;
+    font-family: $headingFont;
+  }
+}
 
+.existingGame {
+  padding: 1rem;
+
+  h3 {
+    font-family: $headingFont;
+    font-size: 3.5rem;
+    color: $buttonColor;
+    text-shadow: 0.2rem 0.2rem $hoverColor;
+  }
+}
+
+.existingGame:nth-child(odd) {
+  background: whitesmoke;
 }

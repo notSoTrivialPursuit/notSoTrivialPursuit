@@ -87,32 +87,49 @@ class SavedGame extends Component {
 	render() {
 		return (
 			<form className='savedGame' action='' id='radioInputs' onSubmit={this.submitAnswers}>
-				<h1>{this.state.gameName}</h1>
-				<h2>Category: {this.state.category}</h2>
-				{this.state.questionSet.map((data, index) => {
-					return (
-						<div key={index} className='question' onChange={this.handleChange}>
-							<p>
-								{index + 1}. {data.question}
-							</p>
-							{data.choices.map((choice, i) => {
-								const uniqueKey = `${index}`;
+        <div className="gameHeading">
+          <div className="wrapper">
+            <h1>{this.state.gameName}</h1>
+            <h2>Category: {this.state.category}</h2>
+          </div>
+        </div>
 
-								return (
-									<div key={`${index}-${i}`}>
-										<input
-											type='radio'
-											name={uniqueKey}
-											id={`${uniqueKey}-${i}`}
-											value={choice}
-											required
-										/>
-										<label htmlFor={`${uniqueKey}-${i}`}>{choice}</label>
-									</div>
-								);
-							})}
-						</div>
-					);
+				{this.state.questionSet.map((data, index) => {
+          return (
+            <div
+              key={index}
+              className='question'
+              onChange={this.handleChange}
+            >
+              <div className="wrapper">
+                <h2>
+                  {index + 1}. {data.question}
+                </h2>
+                <div className="choices">
+                  {data.choices.map((choice, i) => {
+                    const uniqueKey = `${index}`;
+                    return (
+                      <div key={`${index}-${i}`}>
+                        <input
+                          type='radio'
+                          name={uniqueKey}
+                          id={`${uniqueKey}-${i}`}
+                          value={choice}
+                          className='radioButton'
+                        />
+                        <span className='checkMark'></span>
+                        <label
+                          htmlFor={`${uniqueKey}-${i}`}
+                          className='labelRadioContainer'>
+                          {choice}
+                        </label>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          );
 				})}
 				<button className='formSubmit'>Submit</button>
 			</form>
