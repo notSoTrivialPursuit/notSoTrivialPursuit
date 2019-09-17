@@ -5,6 +5,7 @@ import GameList from './GameList';
 import SavedGame from './SavedGame';
 import NewGame from '../components/NewGame';
 import '.././styles/App.scss';
+import '../fontawesome';
 
 class App extends Component {
 	constructor() {
@@ -60,7 +61,6 @@ class App extends Component {
 
 				<div className='wrapper'>
 					<Header className={this.state.componentToShow ? 'smallHeader' : 'largeHeader'} />
-
 
 					{/* New Game and Saved Game Buttons */}
 					{!this.state.componentToShow ? (
