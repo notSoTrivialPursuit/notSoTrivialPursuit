@@ -1,11 +1,11 @@
 $headingFont: "Caveat Brush", cursive;
 $baseFont: "Lato", sans-serif;
 
-$yellow: #ffe500;
-$orange: #d26121;
-$red: #550e1b;
 $black: #000;
-$white: #fff;
+$white: ghostwhite;
+$hoverColor: #ffe500;
+$buttonColor: #d26121;
+$textColor: #550e1b;
 
 
 @mixin phone {

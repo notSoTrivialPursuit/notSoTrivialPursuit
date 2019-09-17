@@ -97,7 +97,7 @@ class SavedGame extends Component {
 							</p>
 							{data.choices.map((choice, i) => {
 								const uniqueKey = `${index}`;
-								console.log(uniqueKey);
+
 								return (
 									<div key={`${index}-${i}`}>
 										<input

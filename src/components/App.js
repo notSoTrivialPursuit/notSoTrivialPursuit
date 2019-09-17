@@ -3,9 +3,8 @@ import Header from './Header';
 import Footer from './Footer';
 import GameList from './GameList';
 import SavedGame from './SavedGame';
-import '.././styles/App.scss';
-import '../components/NewGame';
 import NewGame from '../components/NewGame';
+import '.././styles/App.scss';
 
 class App extends Component {
 	constructor() {
@@ -58,7 +57,6 @@ class App extends Component {
 	render() {
 		return (
 			<div className='App'>
-				{/* <a href="#main" className="skip-link">Skip to main content.</a> */}
 
 				<div className='wrapper'>
 					<Header className={this.state.componentToShow ? 'smallHeader' : 'largeHeader'} />

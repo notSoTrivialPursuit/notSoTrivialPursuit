@@ -14,17 +14,17 @@ body {
 	background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../assets/softerQuestionPattern.png') fixed;
 	height: 100vh;
 	font-size: 1.6rem;
-	color: $red;
+	color: $textColor;
 }
 
 a {
-	color: $orange;
+	color: $buttonColor;
   text-decoration: none;
 	&:focus,
 	&:hover {
-		color: $yellow;
+		color: $hoverColor;
 		padding-bottom: 0.2rem;
-		border-bottom: 2px solid $yellow;
+		border-bottom: 2px solid $hoverColor;
 	}
 }
 
@@ -44,10 +44,3 @@ a {
 .skip-link:focus {
 	left: 0;
 }
-
-// body {
-//     background: linear-gradient(to top right, $red, $orange, $yellow) fixed;
-//     height: 100vh;
-// }
-
-

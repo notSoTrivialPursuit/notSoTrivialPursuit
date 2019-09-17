@@ -29,8 +29,6 @@ class NewGame extends Component {
 		// Create an array of objects
 		const questionSet = [];
 
-		console.log('createQuestionSet responseData', responseData);
-
 		responseData.forEach((data, index) => {
 			questionSet.push({
 				id: `Q-${index}`,
@@ -82,7 +80,6 @@ class NewGame extends Component {
 	};
 
 	handleCriteria = event => {
-		console.log(event.target.id);
 		this.setState({
 			[event.target.name]: event.target.value
 		});
@@ -102,12 +99,8 @@ class NewGame extends Component {
 			}
 		})
 			.then(response => {
-				console.log('Raw API response', response);
-
 				// Grab only the info that we need.  data.results is an Array of Objects
 				const responseData = response.data.results;
-
-				console.log('API Response filtered', responseData);
 
 				// Create choices state (incorrect + randomized position of correct answer)
 				const choices = this.getChoices(responseData);
@@ -273,10 +266,9 @@ class NewGame extends Component {
 									<h2>
 										{index + 1}. {data.question}
 									</h2>
-									<div className="choices">
+									<div className='choices'>
 										{data.choices.map((choice, i) => {
 											const uniqueKey = `${index}`;
-											console.log(uniqueKey);
 											return (
 												<div key={`${index}-${i}`}>
 													<input
