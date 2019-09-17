@@ -97,43 +97,43 @@ class SavedGame extends Component {
         </div>
 
 				{this.state.questionSet.map((data, index) => {
-          return (
-            <div
-              key={index}
-              className='question'
-              onChange={this.handleChange}
-            >
-              <div className="wrapper">
-                <h2>
-                  {index + 1}. {data.question}
-                </h2>
-                <div className="choices">
-                  {data.choices.map((choice, i) => {
-                    const uniqueKey = `${index}`;
-                    return (
-                      <div key={`${index}-${i}`}>
-                        <input
-                          type='radio'
-                          name={uniqueKey}
-                          id={`${uniqueKey}-${i}`}
-                          value={choice}
-                          className='radioButton'
-                        />
-                        <span className='checkMark'></span>
-                        <label
-                          htmlFor={`${uniqueKey}-${i}`}
-                          className='labelRadioContainer'>
-                          {choice}
-                        </label>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          );
+					return (
+						<div
+							key={index}
+							className='question'
+							onChange={this.handleChange}
+						>
+							<div className="wrapper">
+								<h2>
+									{index + 1}. {data.question}
+								</h2>
+								<div className="choices">
+									{data.choices.map((choice, i) => {
+										const uniqueKey = `${index}`;
+										return (
+											<div key={`${index}-${i}`}>
+												<input
+													type='radio'
+													name={uniqueKey}
+													id={`${uniqueKey}-${i}`}
+													value={choice}
+													className='radioButton'
+												/>
+												<span className='checkMark'></span>
+												<label
+													htmlFor={`${uniqueKey}-${i}`}
+													className='questionLabel'>
+													{choice}
+												</label>
+											</div>
+										);
+									})}
+								</div>
+							</div>
+						</div>
+					);
 				})}
-				<button className='formSubmit'>Submit</button>
+				<button className='formSubmit button'>Submit</button>
 			</form>
 		);
 	}
