@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import firebase from '../firebase.js';
+import Preloader from './Preloader';
 import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class SavedGame extends Component {
 	constructor(props) {
@@ -10,7 +12,8 @@ class SavedGame extends Component {
 			questionSet: [],
 			gameName: '',
 			category: '',
-			score: 0
+			score: 0,
+			isSubmitted: false
 		};
 	}
 
@@ -32,9 +35,6 @@ class SavedGame extends Component {
 	// On submit of questions, calculate score using the LENGTH of answers array
 	handleSubmit = event => {
 		event.preventDefault();
-
-		// Display sweet alert showing score
-		console.log('Your final score:', this.state.score);
 	};
 
 	// Whenever user chooses a radio option, it updates the value in the answers array in state
@@ -66,6 +66,10 @@ class SavedGame extends Component {
 		});
 		const score = correctAnswers.length;
 
+		this.setState({
+			isSubmitted: true
+		})
+
 		Swal.fire({
 			title: `Your final score is ${score}/${this.state.questionSet.length}`,
 			text: 'Would you like to play again?',
@@ -83,58 +87,130 @@ class SavedGame extends Component {
 		});
 	};
 
+	showIcon = (userAnswer, rightAnswer, choice) => {
+		if (this.state.isSubmitted) {
+			if (rightAnswer === choice) {
+				return (
+					<FontAwesomeIcon
+						icon='check'
+						className='answerIcon'
+						aria-hidden />
+				)
+			} else if (userAnswer === choice) {
+				return (
+					<FontAwesomeIcon
+						icon='times'
+						className='answerIcon'
+						aria-hidden />
+				)
+			}
+		} else {
+			return ''
+		}
+	}
+
 	// Renders a form element with multiple divs (for each question) and 1 submit input
 	render() {
 		return (
 			<form className='savedGame' action='' id='radioInputs' onSubmit={this.submitAnswers}>
-        <button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
-        
-        <div className="gameHeading">
-          <div className="wrapper">
-            <h1>{this.state.gameName}</h1>
-            <h2>Category: {this.state.category}</h2>
-          </div>
-        </div>
+				<button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
 
-				{this.state.questionSet.map((data, index) => {
-					return (
-						<div
-							key={index}
-							className='question'
-							onChange={this.handleChange}
-						>
-							<div className="wrapper">
-								<h2>
-									{index + 1}. {data.question}
-								</h2>
-								<div className="choices">
-									{data.choices.map((choice, i) => {
-										const uniqueKey = `${index}`;
-										return (
-											<div key={`${index}-${i}`}>
-												<input
-													type='radio'
-													name={uniqueKey}
-													id={`${uniqueKey}-${i}`}
-													value={choice}
-													className='radioButton'
-												/>
-												<span className='checkMark'></span>
-												<label
-													htmlFor={`${uniqueKey}-${i}`}
-													className='questionLabel'>
-													{choice}
-												</label>
-											</div>
-										);
-									})}
+				<div className="gameHeading">
+					<div className="wrapper">
+						<h2>{this.state.gameName}</h2>
+						<h3>{this.state.category}</h3>
+						<h4>Number of questions: {this.state.questionSet.length}</h4>
+
+					</div>
+				</div>
+
+				{
+					this.state.questionSet.map((data, index) => {
+						// return (
+						// 	<div
+						// 		key={index}
+						// 		className='question'
+						// 		onChange={this.handleChange}
+						// 	>
+						// 		<div className="wrapper">
+						// 			<h2>
+						// 				{index + 1}. {data.question}
+						// 			</h2>
+						// 			<div className="choices">
+						// 				{data.choices.map((choice, i) => {
+						// 					const uniqueKey = `${index}`;
+						// 					return (
+						// 						<div key={`${index}-${i}`}>
+						// 							<input
+						// 								type='radio'
+						// 								name={uniqueKey}
+						// 								id={`${uniqueKey}-${i}`}
+						// 								value={choice}
+						// 								className='radioButton'
+						// 							/>
+						// 							<span className='checkMark'></span>
+						// 							<label
+						// 								htmlFor={`${uniqueKey}-${i}`}
+						// 								className='questionLabel'>
+						// 								{choice}
+						// 							</label>
+						// 						</div>
+						// 					);
+						// 				})}
+						// 			</div>
+						// 		</div>
+						// 	</div>
+						// );
+
+						return (
+							<div
+								key={index}
+								className='question'
+								onChange={this.handleChange}>
+								<div className="wrapper">
+									<h2>
+										{index + 1}. {data.question}
+									</h2>
+									<div className="choices">
+										{data.choices.map((choice, i) => {
+											const uniqueKey = `${index}`;
+
+											return (
+												<div key={`${index}-${i}`}>
+													<input
+														type='radio'
+														name={uniqueKey}
+														id={`${uniqueKey}-${i}`}
+														value={choice}
+														className='radioButton'
+													/>
+													<label
+														htmlFor={`${uniqueKey}-${i}`}
+														className='questionLabel'>
+														{choice}
+
+														{
+															this.showIcon(data.userAnswer, data.correctAnswer, choice)
+														}
+
+													</label>
+												</div>
+											);
+										})}
+									</div>
 								</div>
 							</div>
-						</div>
-					);
-				})}
+						);
+					})}
+				{this.state.questionSet.length ? (
+					<div className='buttons'>
+						<button className='formSubmit button'>Submit</button>
+					</div>
+				) : null}
+				})
+			}
 				<button className='formSubmit button'>Submit</button>
-			</form>
+			</form >
 		);
 	}
 }

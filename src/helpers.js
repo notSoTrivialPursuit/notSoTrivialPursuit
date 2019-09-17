@@ -13,7 +13,7 @@ const categories = {
 
 const saveGame = (gameName, category, questionSet) => {
 	const newGameObject = {
-		gameName: gameName,
+		gameName: gameName ? gameName : 'Untitled Trivia Game',
 		category: categories[category],
 		questionSet: questionSet
 	};
@@ -33,5 +33,23 @@ const saveGame = (gameName, category, questionSet) => {
 		type: 'success'
 	});
 };
+
+export const alertSubmit = {
+	title: 'Please answer all the questions before submitting.',
+	type: 'error',
+	allowOutsideClick: false
+}
+
+export const alertPlayAgain = {
+	title: 'Play again?',
+	type: 'question',
+	showCancelButton: true,
+	allowOutsideClick: false
+}
+
+export const alertAPIError = {
+	title: 'Something is wrong.  Please try again later',
+	type: 'error'
+}
 
 export default saveGame;

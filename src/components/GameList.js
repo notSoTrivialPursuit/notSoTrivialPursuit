@@ -32,7 +32,7 @@ class GameList extends Component {
 			}
 
 			// Sorts games from newest to oldest
-			newState.sort((a, b) => a.created < b.created);
+			newState.sort((a, b) => a.created < b.created ? 1 : -1);
 
 			this.setState({
 				games: newState
@@ -43,32 +43,32 @@ class GameList extends Component {
 	render() {
 		return (
 			<section className='gameListSection'>
-        <button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
+				<button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
 
-        <div className="gameListHeading">
-          <div className="wrapper">
-            <h2>Saved Games</h2>
-          </div>
-        </div>
+				<div className="gameListHeading">
+					<div className="wrapper">
+						<h2>Saved Games</h2>
+					</div>
+				</div>
 
-        <ul className='existingGames'>
-          {this.state.games.map(game => {
-            console.log(this.state.games);
-            return (
-              <li
-                className='existingGame'
-                onClick={() => this.props.selectSavedGame(game.id)}
-                key={game.id}
-              >
-                <div className="wrapper">
-                  <h3>{game.gameName}</h3>
-                  <p>Category: {game.category}</p>
-                  <p>Number of questions: {game.numQuestions}</p>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+				<ul className='existingGames'>
+					{this.state.games.map(game => {
+						console.log(this.state.games);
+						return (
+							<li
+								className='existingGame'
+								onClick={() => this.props.selectSavedGame(game.id)}
+								key={game.id}
+							>
+								<div className="wrapper">
+									<h3>{game.gameName}</h3>
+									<p>Category: {game.category}</p>
+									<p>Number of questions: {game.numQuestions}</p>
+								</div>
+							</li>
+						);
+					})}
+				</ul>
 			</section>
 		);
 	}
