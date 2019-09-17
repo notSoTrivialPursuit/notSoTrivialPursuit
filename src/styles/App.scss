@@ -5,23 +5,24 @@
 @import 'header';
 @import 'footer';
 @import 'newGame';
+@import 'gameList';
 
 
 .criteria,
 .question,
 .existingGames,
-.savedGame {
+.gameHeading {
     background: $white;
     border-radius: 1rem;
-    padding: 2rem 7.5%;
+    padding: 2rem 0;
     margin: 2rem 0;
 }
 
-html, body, #root, .App, .App .wrapper {
+html, body, #root, .App, .App > .wrapper {
   height: 100%;
 }
 
-.App .wrapper {
+.App > .wrapper {
   display: flex;
   flex-direction: column;
 }

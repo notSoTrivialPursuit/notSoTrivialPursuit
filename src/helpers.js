@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 
 const categories = {
 	27: 'Animals',
-	25: 'Art',
 	9: 'General Knowledge',
 	22: 'Geography',
 	23: 'History',
@@ -24,6 +23,7 @@ const saveGame = (gameName, category, questionSet) => {
 	const newGameRef = dbRef.push();
 	newGameRef.set({
 		id: newGameRef.key,
+		created: Date.now(),
 		...newGameObject
 	});
 
