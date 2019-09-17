@@ -4,8 +4,8 @@ import saveGame from '../helpers';
 import Swal from 'sweetalert2';
 
 class NewGame extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		/*  States:
             responseData -  the api response results objects
@@ -196,6 +196,7 @@ class NewGame extends Component {
 
 		return (
 			<div className='newGameTrivia'>
+        <button className='returnHome' onClick={() => this.props.toggleGame('')}>X</button>
         <form onSubmit={this.handlePlay} className='criteria'>
           <div className="wrapper">
             <div>

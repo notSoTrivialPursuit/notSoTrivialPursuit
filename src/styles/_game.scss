@@ -62,12 +62,6 @@ form.criteria select {
     align-items: center;
     margin: 0.5rem;
     padding: 0.5rem;
-    
-    &:hover,
-    &:focus {
-      background: $hoverColor;
-      border-radius: 1rem;
-    }
   }
   
   label {
@@ -113,7 +107,7 @@ form.criteria select {
 }
 
 .radioButton:checked + .questionLabel {
-  background-color:$hoverColor;
+  background-color: $hoverColor;
 }
 
 .radioButton + .questionLabel:hover {

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import firebase from '../firebase';
 
 class GameList extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			games: []
 		};
@@ -42,28 +42,33 @@ class GameList extends Component {
 
 	render() {
 		return (
-			<section className='existingGames'>
-				<div className="wrapper">
-					<h2>Saved Games</h2>
+			<section className='gameListSection'>
+        <button className='returnHome' onClick={() => this.props.toggleGame('')}>X</button>
+
+        <div className="gameListHeading">
+          <div className="wrapper">
+            <h2>Saved Games</h2>
+          </div>
         </div>
-					<ul>
-						{this.state.games.map(game => {
-							console.log(this.state.games);
-							return (
-								<li
-									className='existingGame'
-									onClick={() => this.props.selectSavedGame(game.id)}
-									key={game.id}
-								>
-                  <div className="wrapper">
-                    <h3>{game.gameName}</h3>
-                    <p>Category: {game.category}</p>
-                    <p>Number of questions: {game.numQuestions}</p>
-                  </div>
-								</li>
-							);
-						})}
-					</ul>
+
+        <ul className='existingGames'>
+          {this.state.games.map(game => {
+            console.log(this.state.games);
+            return (
+              <li
+                className='existingGame'
+                onClick={() => this.props.selectSavedGame(game.id)}
+                key={game.id}
+              >
+                <div className="wrapper">
+                  <h3>{game.gameName}</h3>
+                  <p>Category: {game.category}</p>
+                  <p>Number of questions: {game.numQuestions}</p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
 			</section>
 		);
 	}

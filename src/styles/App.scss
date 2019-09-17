@@ -2,20 +2,23 @@
 @import 'variablesAndMixins';
 @import 'global';
 @import 'buttons';
-@import 'header';
-@import 'footer';
-@import 'game';
-@import 'gameList';
-
 
 .criteria,
 .question,
-.existingGames,
-.gameHeading {
+.gameListHeading,
+.existingGame,
+.gameHeading,
+.savedGame {
     background: $white;
     border-radius: 1rem;
-    padding: 2rem 0;
+    padding: 2.5rem 0;
     margin: 2rem 0;
+}
+
+.newGameTrivia,
+.savedGame,
+.gameListSection {
+  position: relative;
 }
 
 html, body, #root, .App, .App > .wrapper {
@@ -34,3 +37,8 @@ html, body, #root, .App, .App > .wrapper {
 footer {
   flex-shrink: 0;
 }
+
+@import 'header';
+@import 'footer';
+@import 'game';
+@import 'gameList';
