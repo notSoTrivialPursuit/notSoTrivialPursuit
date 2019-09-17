@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../firebase';
+import Preloader from './Preloader';
 
 class GameList extends Component {
 	constructor(props) {
@@ -53,7 +54,6 @@ class GameList extends Component {
 
 				<ul className='existingGames'>
 					{this.state.games.map(game => {
-						console.log(this.state.games);
 						return (
 							<li
 								className='existingGame'
@@ -69,6 +69,8 @@ class GameList extends Component {
 						);
 					})}
 				</ul>
+
+				{!this.state.games.length ? <Preloader /> : null}
 			</section>
 		);
 	}

@@ -1,18 +1,18 @@
 .container {
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    margin: 0 auto;
+    width: 20rem;
+    height: 20rem;
+    position: relative;
+    left: 10rem;
+    top: 10rem;
     transform: translate(-50%, -50%);
-    margin: auto;
     filter: url('#goo');
     animation: rotate-move 2s ease-in-out infinite;
 }
 
-.dot { 
-    width: 70px;
-    height: 70px;
+.dot {
+    width: 7rem;
+    height: 7rem;
     border-radius: 50%;
     background-color: #000;
     position: absolute;

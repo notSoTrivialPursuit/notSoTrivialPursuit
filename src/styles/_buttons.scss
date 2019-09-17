@@ -6,7 +6,7 @@
   letter-spacing: 0.2rem;
   border: none;
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 0.5rem 1.5rem;
   display: block;
   margin: 1rem auto;
 
@@ -17,38 +17,37 @@
   }
 }
 
+// Landing page buttons
 .gameButtons {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex: 1 0 auto;
-
+  
   @include tablet {
-    display: flex;
-    flex-direction:row;    
+    flex-direction: row;    
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
   }
+
+  // @include desktop {
+  //   width: 60%;
+  // }
 
   .button {
     font-size: 3rem;
-    padding: 1rem 1.5rem;
 
-    @include tablet{
-    height:7rem;        
+    @include tablet {
+    font-size: 5rem;
+    margin: 0 2rem;
     }
 
-    @include desktop{
-    height:8rem;
-    font-size:5rem;
-    }
-
-    @include desktopBigger{
-      height:10rem;    
+    @include desktop {
+      margin: 0 3rem;
     }
   }
 }
-
 
 .returnHome {
   position: absolute;
@@ -57,6 +56,16 @@
   border-radius: 50%;
   line-height: 2.7rem;
   font-size: 5rem;
+  background: $hoverColor;
+  padding: 1.5rem;
+  color: $black;
+
+  &:hover {
+    box-shadow: 0 0 0 0.5rem $hoverColor;
+    // background: $textColor;
+    background: $black;
+    color: $hoverColor;
+  }
 }
- 
+
 
