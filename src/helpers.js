@@ -34,6 +34,14 @@ const saveGame = (gameName, category, questionSet) => {
 	});
 };
 
+export const alertScore = (score, totalQuestions) => {
+	return {
+		title: `Your final score is ${score}/${totalQuestions}`,
+		type: 'info',
+		allowOutsideClick: false
+	}
+}
+
 export const alertSubmit = {
 	title: 'Please answer all the questions before submitting.',
 	type: 'error',

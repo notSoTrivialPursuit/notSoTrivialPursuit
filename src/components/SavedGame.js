@@ -32,11 +32,6 @@ class SavedGame extends Component {
 		});
 	}
 
-	// On submit of questions, calculate score using the LENGTH of answers array
-	handleSubmit = event => {
-		event.preventDefault();
-	};
-
 	// Whenever user chooses a radio option, it updates the value in the answers array in state
 	handleChange = event => {
 		// ToDo: Refactor this code and make this as a function so that both newGame and SavedGame can just call that function
@@ -59,8 +54,9 @@ class SavedGame extends Component {
 
 	// Score game
 	submitAnswers = event => {
-		const form = event.target;
 		event.preventDefault();
+
+		const form = event.target;
 		const correctAnswers = this.state.questionSet.filter(userAnswer => {
 			return userAnswer.isCorrect;
 		});
@@ -76,11 +72,18 @@ class SavedGame extends Component {
 			type: 'success',
 			showCancelButton: true,
 			confirmButtonText: 'Yes, play again',
-			cancelButtonText: 'No, play another game',
+			cancelButtonText: 'No, exit the game',
 			allowOutsideClick: false
 		}).then(result => {
 			if (result.value) {
 				form.reset();
+
+				this.setState({
+					isSubmitted: false
+				});
+
+				window.scrollTo(0, 0);
+
 			} else {
 				this.props.toggleGame('');
 			}
@@ -126,42 +129,6 @@ class SavedGame extends Component {
 
 				{
 					this.state.questionSet.map((data, index) => {
-						// return (
-						// 	<div
-						// 		key={index}
-						// 		className='question'
-						// 		onChange={this.handleChange}
-						// 	>
-						// 		<div className="wrapper">
-						// 			<h2>
-						// 				{index + 1}. {data.question}
-						// 			</h2>
-						// 			<div className="choices">
-						// 				{data.choices.map((choice, i) => {
-						// 					const uniqueKey = `${index}`;
-						// 					return (
-						// 						<div key={`${index}-${i}`}>
-						// 							<input
-						// 								type='radio'
-						// 								name={uniqueKey}
-						// 								id={`${uniqueKey}-${i}`}
-						// 								value={choice}
-						// 								className='radioButton'
-						// 							/>
-						// 							<span className='checkMark'></span>
-						// 							<label
-						// 								htmlFor={`${uniqueKey}-${i}`}
-						// 								className='questionLabel'>
-						// 								{choice}
-						// 							</label>
-						// 						</div>
-						// 					);
-						// 				})}
-						// 			</div>
-						// 		</div>
-						// 	</div>
-						// );
-
 						return (
 							<div
 								key={index}
@@ -209,7 +176,6 @@ class SavedGame extends Component {
 				) : null}
 				})
 			}
-				<button className='formSubmit button'>Submit</button>
 			</form >
 		);
 	}

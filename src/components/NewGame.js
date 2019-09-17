@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Preloader from './Preloader';
-import saveGame, { alertSubmit, alertPlayAgain, alertAPIError } from '../helpers';
+import saveGame, { alertSubmit, alertPlayAgain, alertAPIError, alertScore } from '../helpers';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -155,6 +155,8 @@ class NewGame extends Component {
 			return obj.userAnswer !== '';
 		})
 
+		console.log('ANSWERED OBJECTS', answeredQuestions);
+
 		// Show error if the user did not answer all the questions. Otherwise, show the score
 		if (answeredQuestions.length !== this.state.numQuestions) {
 			Swal.fire(alertSubmit);
@@ -169,17 +171,15 @@ class NewGame extends Component {
 				isSubmitted: true
 			})
 
-			Swal.fire({
-				title: `Your final score is ${score}/${this.state.questionSet.length}`,
-				type: 'success',
-				allowOutsideClick: false
-			}).then(() => {
+			Swal.fire(alertScore(score, this.state.questionSet.length))
+			.then(() => {
 				Swal.fire(alertPlayAgain).then(result => {
 					if (result.value) {
 						this.resetStates();
 					}
 				})
 			})
+
 		}
 	};
 
@@ -264,7 +264,7 @@ class NewGame extends Component {
 								required
 								value={this.state.numQuestions}>
 								<option value='5'>5</option>
-								<option value='5'>10</option>
+								<option value='10'>10</option>
 								<option value='15'>15</option>
 								<option value='20'>20</option>
 							</select>
