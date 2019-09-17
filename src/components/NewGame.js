@@ -207,7 +207,6 @@ class NewGame extends Component {
                 placeholder='Enter name here'
                 onChange={this.handleCriteria}
                 value={this.state.gameName}
-              // required
               />
             </div>
 
@@ -278,10 +277,9 @@ class NewGame extends Component {
                             value={choice}
                             className='radioButton'
                           />
-                          <span className='checkMark'></span>
                           <label
                             htmlFor={`${uniqueKey}-${i}`}
-                            className='labelRadioContainer'>
+                            className='questionLabel'>
                             {choice}
                           </label>
                         </div>
