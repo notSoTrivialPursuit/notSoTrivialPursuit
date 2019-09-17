@@ -4,8 +4,8 @@ header {
 
 h1 {
   text-transform: uppercase;
-  text-shadow: 0.5rem 0.5rem $orange;
-  color: $yellow;
+  text-shadow: 0.5rem 0.5rem $buttonColor;
+  color: $hoverColor;
   font-family: $headingFont;
   line-height: 1;
   margin: 0;
@@ -19,5 +19,5 @@ h1 {
 
 .smallHeader h1 {
   font-size: 4rem;
-  text-shadow: 0.25rem 0.25rem $orange;
+  text-shadow: 0.25rem 0.25rem $buttonColor;
 }
