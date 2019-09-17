@@ -12,7 +12,6 @@
 
   &:hover, &:focus {
     background: $black;
-    // background: none;
     color: $hoverColor;
     box-shadow: 0 0 0 0.5rem $hoverColor;
   }
@@ -22,12 +21,34 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1 0 auto;
+
+  @include tablet {
+    display: flex;
+    flex-direction:row;    
+    justify-content: space-between;
+    align-items: center; 
+  }
 
   .button {
     font-size: 3rem;
     padding: 1rem 1.5rem;
+
+    @include tablet{
+    height:7rem;        
+    }
+
+    @include desktop{
+    height:8rem;
+    font-size:5rem;
+    }
+
+    @include desktopBigger{
+      height:10rem;    
+    }
   }
 }
+
 
 .returnHome {
   position: absolute;
@@ -37,3 +58,5 @@
   line-height: 2.7rem;
   font-size: 5rem;
 }
+ 
+

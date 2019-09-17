@@ -1,7 +1,17 @@
-.wrapper {
-	width: 85%;
+html, body, #root, .App, .App > .wrapper {
+  height: 100%;
+}
+
+// .wrapper {
+//   margin: 0 auto;
+// }
+
+.App .wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
 	max-width: 1280px;
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 html {
@@ -13,7 +23,7 @@ body {
 	background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../assets/softerQuestionPattern.png') fixed;
 	font-size: 1.6rem;
   color: $textColor;
-  animation: animatedBackground 100s linear infinite;
+  animation: animatedBackground 50s linear infinite;
 }
 
 @keyframes animatedBackground {
@@ -53,3 +63,58 @@ ul {
   list-style-type: none;
   padding: 0;
 }
+
+// Block element styling
+.question,
+.existingGame {
+    background: $white;
+    border-radius: 1rem;
+    padding: 2.5rem 0;
+    margin: 2rem 0;
+}
+
+.newGameTrivia,
+.savedGame,
+.gameListSection {
+  position: relative;
+}
+
+.gameHeading,
+.gameListHeading,
+.criteria {
+    background: linear-gradient(to top right, $textColor, $buttonColor, $hoverColor);
+    border-radius: 1rem;
+    padding: 2rem 0;
+    margin: 2rem 0;
+}
+
+.gameHeading .wrapper,
+.gameListHeading .wrapper,
+.criteria .wrapper {
+  text-align: center;
+
+  @include tablet {
+	width: 75%;
+  }
+
+  h2, h3, h4 {
+    color: $white;
+  }
+
+  h2 {
+    font-family: $headingFont;
+    font-size: 5rem;
+	margin: 1rem 0;
+	color: $black;
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+  }
+
+  h3, h4 {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+  }
+}
+

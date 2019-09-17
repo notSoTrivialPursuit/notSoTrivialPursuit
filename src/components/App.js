@@ -28,8 +28,8 @@ class App extends Component {
 		} else if (this.state.componentToShow === 'gameList') {
 			return (
 				<GameList
-          selectSavedGame={this.selectSavedGame}
-          toggleGame={this.toggleGame}
+					selectSavedGame={this.selectSavedGame}
+					toggleGame={this.toggleGame}
 				/>
 			);
 		} else if (this.state.componentToShow === 'savedGame') {
@@ -73,7 +73,7 @@ class App extends Component {
 								Saved Games
 							</button>
 						</section>
-					) : null }
+					) : null}
 
 					{this.renderComponent()}
 

@@ -15,6 +15,18 @@ h1 {
 
 .largeHeader h1 {
   font-size: 7.5rem;
+
+  @include tablet{
+    font-size: 8.5rem;
+    }
+
+  @include desktop{
+    font-size: 9rem;
+    }
+
+  @include desktopBigger{
+    font-size: 10rem;
+  }
 }
 
 .smallHeader h1 {

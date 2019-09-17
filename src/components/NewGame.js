@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import saveGame from '../helpers';
+import Preloader from './Preloader';
+import saveGame, { alertSubmit, alertPlayAgain, alertAPIError } from '../helpers';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -122,6 +123,7 @@ class NewGame extends Component {
 			})
 			.catch(error => {
 				// ToDo: Code to handle when api call fails.  Display human readable message to user.
+				Swal.fire(alertAPIError);
 			});
 	};
 
@@ -155,11 +157,8 @@ class NewGame extends Component {
 
 		// Show error if the user did not answer all the questions. Otherwise, show the score
 		if (answeredQuestions.length !== this.state.numQuestions) {
-			Swal.fire({
-				title: 'Please answer all the questions before submitting.',
-				type: 'error',
-				allowOutsideClick: false
-			})
+			Swal.fire(alertSubmit);
+
 		} else {
 			const correctAnswers = this.state.questionSet.filter(userAnswer => {
 				return userAnswer.isCorrect;
@@ -175,13 +174,8 @@ class NewGame extends Component {
 				type: 'success',
 				allowOutsideClick: false
 			}).then(() => {
-				Swal.fire({
-					title: 'Play again?',
-					type: 'question',
-					showCancelButton: true,
-					allowOutsideClick: false
-				}).then(result => {
-					if(result.value) {
+				Swal.fire(alertPlayAgain).then(result => {
+					if (result.value) {
 						this.resetStates();
 					}
 				})
@@ -202,17 +196,17 @@ class NewGame extends Component {
 		if (this.state.isSubmitted) {
 			if (rightAnswer === choice) {
 				return (
-					<FontAwesomeIcon 
+					<FontAwesomeIcon
 						icon='check'
 						className='answerIcon'
-						aria-hidden/>
+						aria-hidden />
 				)
 			} else if (userAnswer === choice) {
 				return (
-					<FontAwesomeIcon 
-						icon='times' 
+					<FontAwesomeIcon
+						icon='times'
 						className='answerIcon'
-						aria-hidden/>
+						aria-hidden />
 				)
 			}
 		} else {
@@ -226,122 +220,116 @@ class NewGame extends Component {
 
 		return (
 			<div className='newGameTrivia'>
-        <button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
-        <form onSubmit={this.handlePlay} className='criteria'>
-          <div className="wrapper">
-            <div>
-              <label htmlFor='gameName'>Game Name</label>
-              <input
-                type='text'
-                id='gameName'
-                name='gameName'
-                placeholder='Enter name here'
-                onChange={this.handleCriteria}
-                value={this.state.gameName}
-              />
-            </div>
+				<button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
+				<form onSubmit={this.handlePlay} className='criteria'>
+					<div className='wrapper'>
+						<div className='criteriaType'>
+							<label htmlFor='gameName'>Game Name</label>
+							<input
+								type='text'
+								id='gameName'
+								name='gameName'
+								placeholder='Enter name here'
+								onChange={this.handleCriteria}
+								value={this.state.gameName}
+							/>
+						</div>
 
-            <div>
-              <label htmlFor='category'>Categories</label>
-              <select
-                name='category'
-                id='category'
-                onChange={this.handleCriteria}
-                required
-                value={this.state.category}
-                >
-                <option value=''>Choose one</option>
-                <option value='27'>Animals</option>
-                <option value='9'>General Knowledge</option>
-                <option value='22'>Geography</option>
-                <option value='23'>History</option>
-                <option value='11'>Movies</option>
-                <option value='17'>Science and Nature</option>
-                <option value='21'>Sports</option>
-              </select>
-            </div>
+						<div className='criteriaType'>
+							<label htmlFor='category'>Categories</label>
+							<select
+								name='category'
+								id='category'
+								onChange={this.handleCriteria}
+								required
+								value={this.state.category}>
+								<option value=''>Choose one</option>
+								<option value='27'>Animals</option>
+								<option value='9'>General Knowledge</option>
+								<option value='22'>Geography</option>
+								<option value='23'>History</option>
+								<option value='11'>Movies</option>
+								<option value='17'>Science and Nature</option>
+								<option value='21'>Sports</option>
+							</select>
+						</div>
 
-            <div>
-              <label htmlFor='numQuestions'>Number of Questions</label>
-              <select
-                name='numQuestions'
-                id='numQuestions'
-                className='numQuestions'
-                onChange={this.handleCriteria}
-                required
-                value={this.state.numQuestions}
-                >
-                <option value='5'>5</option>
-                <option value='15'>15</option>
-                <option value='20'>20</option>
-              </select>
-            </div>
+						<div className='criteriaType'>
+							<label htmlFor='numQuestions'>Number of Questions</label>
+							<select
+								name='numQuestions'
+								id='numQuestions'
+								className='numQuestions'
+								onChange={this.handleCriteria}
+								required
+								value={this.state.numQuestions}>
+								<option value='5'>5</option>
+								<option value='5'>10</option>
+								<option value='15'>15</option>
+								<option value='20'>20</option>
+							</select>
+						</div>
+					</div>
+					<button type='submit' className='playGame button'>Let's play</button>
+				</form>
 
-            <button type='submit' className='playGame button'>
-              Let's play
-            </button>
-          </div>
-        </form>
+				<form action='' onSubmit={this.submitAnswers}>
+					{questionSet.map((data, index) => {
+						return (
+							<div
+								key={index}
+								className='question'
+								onChange={this.handleChange}>
+								<div className="wrapper">
+									<h2>
+										{index + 1}. {data.question}
+									</h2>
+									<div className="choices">
+										{data.choices.map((choice, i) => {
+											const uniqueKey = `${index}`;
 
-        <form action='' onSubmit={this.submitAnswers}>
-          {questionSet.map((data, index) => {
-            return (
-              <div
-                key={index}
-				className='question'
-                onChange={this.handleChange}
-              >
-                <div className="wrapper">
-                  <h2>
-                    {index + 1}. {data.question}
-                  </h2>
-                  <div className="choices">
-                    {data.choices.map((choice, i) => {
-                      const uniqueKey = `${index}`;
+											return (
+												<div key={`${index}-${i}`}>
+													<input
+														type='radio'
+														name={uniqueKey}
+														id={`${uniqueKey}-${i}`}
+														value={choice}
+														className='radioButton'
+													/>
+													<label
+														htmlFor={`${uniqueKey}-${i}`}
+														className='questionLabel'>
+														{choice}
 
-					  return (
-                        <div key={`${index}-${i}`}>
-                          <input
-                            type='radio'
-                            name={uniqueKey}
-                            id={`${uniqueKey}-${i}`}
-                            value={choice}
-                            className='radioButton'
-                          />
-                          <label
-                            htmlFor={`${uniqueKey}-${i}`}
-							className='questionLabel'>
-							{choice}
+														{
+															this.showIcon(data.userAnswer, data.correctAnswer, choice)
+														}
 
-							{
-								this.showIcon(data.userAnswer, data.correctAnswer, choice)
-							}
-
-                          </label>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-          {this.state.questionSet.length ? (
-            <div className='buttons'>
-              <button className='formSubmit button'>Submit</button>
-            </div>
-          ) : null}
-        </form>
-        {this.state.questionSet.length ? (
-          <button
-            className='button'
-            onClick={() => {
-              saveGame(gameName, category, questionSet);
-            }}
-          >
-            Save Game
-        </button>
-        ) : null}
+													</label>
+												</div>
+											);
+										})}
+									</div>
+								</div>
+							</div>
+						);
+					})}
+					{this.state.questionSet.length ? (
+						<div className='buttons'>
+							<button className='formSubmit button'>Submit</button>
+						</div>
+					) : null}
+				</form>
+				{this.state.questionSet.length ? (
+					<button
+						className='button'
+						onClick={() => {
+							saveGame(gameName, category, questionSet);
+						}}>
+						Save Game
+					</button>
+				) : null}
 			</div>
 		);
 	}
