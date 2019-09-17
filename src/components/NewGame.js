@@ -278,10 +278,9 @@ class NewGame extends Component {
 														value={choice}
 														className='radioButton'
 													/>
-													<span className='checkMark'></span>
 													<label
 														htmlFor={`${uniqueKey}-${i}`}
-														className='labelRadioContainer'>
+														className='questionLabel'>
 														{choice}
 													</label>
 												</div>
