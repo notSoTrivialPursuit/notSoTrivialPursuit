@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import saveGame from '../helpers';
 import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class NewGame extends Component {
 	constructor() {
@@ -13,15 +14,17 @@ class NewGame extends Component {
             questionSet - the questions, correct_answer, choices, userAnswer
             category - the category criteria
             numQuestions - number of questions criteria
-            gameName - game name
+			gameName - game name
+			isSubmitted - will update if user clicks submit
         */
 		this.state = {
 			responseData: [],
 			choices: [],
 			questionSet: [],
 			category: '',
-			numQuestions: 10,
-			gameName: ''
+			numQuestions: 5,
+			gameName: '',
+			isSubmitted: false
 		};
 	}
 
@@ -87,6 +90,8 @@ class NewGame extends Component {
 
 	handlePlay = event => {
 		event.preventDefault();
+
+		this.resetStates();
 
 		// Connect to API
 		axios({
@@ -161,38 +166,63 @@ class NewGame extends Component {
 			});
 			const score = correctAnswers.length;
 
+			this.setState({
+				isSubmitted: true
+			})
+
 			Swal.fire({
 				title: `Your final score is ${score}/${this.state.questionSet.length}`,
-				text: 'Would you like to save this game?',
 				type: 'success',
-				showCancelButton: true,
-				confirmButtonText: 'Save',
-				cancelButtonText: 'Start a new game',
 				allowOutsideClick: false
-			}).then(result => {
-				if (result.value) {
-					saveGame(
-						this.state.gameName,
-						this.state.category,
-						this.state.questionSet
-					);
-					this.props.toggleGame('gameList');
-				} else {
-					this.setState({
-						responseData: [],
-						choices: [],
-						questionSet: [],
-						category: '',
-						numQuestions: 10,
-						gameName: ''
-					});
-				}
-			});
+			}).then(() => {
+				Swal.fire({
+					title: 'Play again?',
+					type: 'question',
+					showCancelButton: true,
+					allowOutsideClick: false
+				}).then(result => {
+					if(result.value) {
+						this.resetStates();
+					}
+				})
+			})
 		}
 	};
 
+	resetStates = () => {
+		this.setState({
+			responseData: [],
+			choices: [],
+			questionSet: [],
+			isSubmitted: false
+		});
+	}
+
+	showIcon = (userAnswer, rightAnswer, choice) => {
+		if (this.state.isSubmitted) {
+			if (rightAnswer === choice) {
+				return (
+					<FontAwesomeIcon 
+						icon='check'
+						className='answerIcon'
+						aria-hidden/>
+				)
+			} else if (userAnswer === choice) {
+				return (
+					<FontAwesomeIcon 
+						icon='times' 
+						className='answerIcon'
+						aria-hidden/>
+				)
+			}
+		} else {
+			return ''
+		}
+	}
+
 	render() {
 		const { questionSet, gameName, category } = this.state;
+		console.log("question set", questionSet);
 
 		return (
 			<div className='newGameTrivia'>
@@ -240,7 +270,7 @@ class NewGame extends Component {
                 required
                 value={this.state.numQuestions}
                 >
-                <option value='10'>10</option>
+                <option value='5'>5</option>
                 <option value='15'>15</option>
                 <option value='20'>20</option>
               </select>
@@ -257,7 +287,7 @@ class NewGame extends Component {
             return (
               <div
                 key={index}
-                className='question'
+				className='question'
                 onChange={this.handleChange}
               >
                 <div className="wrapper">
@@ -267,8 +297,8 @@ class NewGame extends Component {
                   <div className="choices">
                     {data.choices.map((choice, i) => {
                       const uniqueKey = `${index}`;
-                      console.log(uniqueKey);
-                      return (
+
+					  return (
                         <div key={`${index}-${i}`}>
                           <input
                             type='radio'
@@ -279,8 +309,13 @@ class NewGame extends Component {
                           />
                           <label
                             htmlFor={`${uniqueKey}-${i}`}
-                            className='questionLabel'>
-                            {choice}
+							className='questionLabel'>
+							{choice}
+
+							{
+								this.showIcon(data.userAnswer, data.correctAnswer, choice)
+							}
+
                           </label>
                         </div>
                       );
