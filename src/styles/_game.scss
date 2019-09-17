@@ -115,7 +115,7 @@ form.criteria select {
 }
 
 .radioButton:checked + .questionLabel {
-  background-color:$hoverColor;
+  background-color: $hoverColor;
 }
 
 .radioButton + .questionLabel:hover {
@@ -135,4 +135,28 @@ form.criteria select {
 
 .fa-check {
   color: green;
+}
+
+.gameHeading {
+    background: linear-gradient(to top right, $textColor, $buttonColor, $hoverColor);
+    border-radius: 1rem;
+    padding: 2rem 0;
+    margin: 2rem 0;
+}
+
+.gameHeading .wrapper {
+  text-align: center;
+
+  h2 {
+    font-family: $headingFont;
+    font-size: 5rem;
+    color: $white;
+    margin: 1rem 0;
+  }
+
+  h3 {
+    font-size: 2.5rem;
+    color: $white;
+    margin-top: 0;
+  }
 }

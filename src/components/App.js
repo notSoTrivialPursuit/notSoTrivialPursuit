@@ -65,10 +65,10 @@ class App extends Component {
 					{/* New Game and Saved Game Buttons */}
 					{!this.state.componentToShow ? (
 						<section className='gameButtons'>
-							<button type='submit' onClick={() => this.toggleGame('newGame')}>
+							<button className="button" type='submit' onClick={() => this.toggleGame('newGame')}>
 								New Game
 							</button>
-							<button type='submit' onClick={() => this.toggleGame('gameList')}>
+							<button className="button" type='submit' onClick={() => this.toggleGame('gameList')}>
 								Saved Games
 							</button>
 						</section>
