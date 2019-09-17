@@ -45,6 +45,7 @@ class GameList extends Component {
 			<section className='existingGames'>
 				<div className="wrapper">
 					<h2>Saved Games</h2>
+        </div>
 					<ul>
 						{this.state.games.map(game => {
 							console.log(this.state.games);
@@ -54,14 +55,15 @@ class GameList extends Component {
 									onClick={() => this.props.selectSavedGame(game.id)}
 									key={game.id}
 								>
-									<h3>{game.gameName}</h3>
-									<p>Category: {game.category}</p>
-									<p>Number of questions: {game.numQuestions}</p>
+                  <div className="wrapper">
+                    <h3>{game.gameName}</h3>
+                    <p>Category: {game.category}</p>
+                    <p>Number of questions: {game.numQuestions}</p>
+                  </div>
 								</li>
 							);
 						})}
 					</ul>
-				</div>
 			</section>
 		);
 	}
