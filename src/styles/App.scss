@@ -8,6 +8,7 @@
 @import 'gameList';
 
 
+
 .criteria,
 .question,
 .existingGames {
@@ -33,3 +34,42 @@ html, body, #root, .App, .App > .wrapper {
 footer {
   flex-shrink: 0;
 }
+
+@include tablet{
+  .largeHeader h1{
+   font-size: 8.5rem;
+  }
+  .gameButtons{       
+    display: flex;
+    flex-direction:row;    
+    justify-content: space-between;
+    align-items: center;
+  }
+  .button{    
+    height: 7rem;        
+  }
+}
+  @include desktop{
+    .largeHeader h1{
+      font-size: 9rem;
+    }
+    .button{
+      height:8rem;                      
+    }    
+}
+
+@include desktopBigger{
+  .largeHeader h1{
+    font-size: 10rem;
+  }
+  button{
+    height:10rem;     
+  }
+}
+
+
+
+  
+
+  
+  
