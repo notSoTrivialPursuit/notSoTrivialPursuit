@@ -1,18 +1,39 @@
-.existingGames { 
+.existingGames {
+  display: flex;
+  flex-direction: column;
+
   h2 {
     font-size:5rem;
     font-family: $headingFont;
+  }
+
+  @include tablet {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 
 .existingGame {
   padding: 1rem;
+  display: flex;
+  align-items: center;
 
+  &:hover {
+    box-shadow: 0 0 0 0.3rem $hoverColor;
+    cursor: pointer;
+  }
+  
   h3 {
     font-family: $headingFont;
     font-size: 3.5rem;
     color: $buttonColor;
     text-shadow: 0.2rem 0.2rem $hoverColor;
+    margin-top: 0.8rem;
+  }
+  
+  @include tablet {
+    flex: 1 1 calc(100% / 3 - 2rem);
+    margin: 1rem;
   }
 }
 

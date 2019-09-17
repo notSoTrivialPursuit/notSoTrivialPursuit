@@ -1,5 +1,4 @@
 .wrapper {
-	// text-align: center;
 	width: 85%;
 	max-width: 1280px;
 	margin: 0 auto;
@@ -12,9 +11,14 @@ html {
 
 body {
 	background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../assets/softerQuestionPattern.png') fixed;
-	height: 100vh;
 	font-size: 1.6rem;
-	color: $textColor;
+  color: $textColor;
+  animation: animatedBackground 100s linear infinite;
+}
+
+@keyframes animatedBackground {
+  0% { background-position: 0 0; }
+  100% { background-position: -100% 150%; }
 }
 
 a {
@@ -24,7 +28,7 @@ a {
 	&:hover {
 		color: $hoverColor;
 		padding-bottom: 0.2rem;
-		border-bottom: 2px solid $hoverColor;
+		border-bottom: 0.2rem solid $hoverColor;
 	}
 }
 

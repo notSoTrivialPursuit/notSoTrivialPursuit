@@ -87,12 +87,14 @@ class SavedGame extends Component {
 	render() {
 		return (
 			<form className='savedGame' action='' id='radioInputs' onSubmit={this.submitAnswers}>
-				<div className="gameHeading">
-					<div className="wrapper">
-						<h2>{this.state.gameName}</h2>
-						<h3>Category: {this.state.category}</h3>
-					</div>
-				</div>
+        <button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
+        
+        <div className="gameHeading">
+          <div className="wrapper">
+            <h1>{this.state.gameName}</h1>
+            <h2>Category: {this.state.category}</h2>
+          </div>
+        </div>
 
 				{this.state.questionSet.map((data, index) => {
 					return (

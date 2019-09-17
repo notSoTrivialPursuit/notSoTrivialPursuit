@@ -5,8 +5,8 @@ import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class NewGame extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		/*  States:
             responseData -  the api response results objects
@@ -226,6 +226,7 @@ class NewGame extends Component {
 
 		return (
 			<div className='newGameTrivia'>
+        <button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
         <form onSubmit={this.handlePlay} className='criteria'>
           <div className="wrapper">
             <div>
@@ -276,7 +277,7 @@ class NewGame extends Component {
               </select>
             </div>
 
-            <button type='submit' className='playGame'>
+            <button type='submit' className='playGame button'>
               Let's play
             </button>
           </div>
@@ -327,12 +328,13 @@ class NewGame extends Component {
           })}
           {this.state.questionSet.length ? (
             <div className='buttons'>
-              <button className='formSubmit'>Submit</button>
+              <button className='formSubmit button'>Submit</button>
             </div>
           ) : null}
         </form>
         {this.state.questionSet.length ? (
           <button
+            className='button'
             onClick={() => {
               saveGame(gameName, category, questionSet);
             }}

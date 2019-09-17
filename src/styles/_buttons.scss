@@ -1,4 +1,4 @@
-button {
+.button {
   background: $buttonColor;
   color: $white;
   font-family: $headingFont;
@@ -23,16 +23,17 @@ button {
   flex-direction: column;
   justify-content: center;
 
-  button {
+  .button {
     font-size: 3rem;
     padding: 1rem 1.5rem;
   }
 }
 
-.exitGame {
-  // position: absolute;
-  // top: 6rem;
-  // left: 48%;
+.returnHome {
+  position: absolute;
+  top: -1.5rem;
+  right: -1.5rem;
   border-radius: 50%;
-  line-height: 1.8rem;
+  line-height: 2.7rem;
+  font-size: 5rem;
 }
