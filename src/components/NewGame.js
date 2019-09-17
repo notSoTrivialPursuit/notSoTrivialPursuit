@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Preloader from './Preloader';
-import saveGame, { alertSubmit, alertPlayAgain, alertAPIError } from '../helpers';
+import saveGame, { handleChoiceSelection, alertSubmit, alertPlayAgain, alertAPIError, alertScore, showIcon } from '../helpers';
 import Swal from 'sweetalert2';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class NewGame extends Component {
 	constructor(props) {
@@ -129,21 +128,7 @@ class NewGame extends Component {
 
 	// Function to handle the change
 	handleChange = event => {
-		const questionSetCopy = [...this.state.questionSet];
-
-		// Update the userAnswer property value with what the user selected answer
-		const obj = questionSetCopy[event.target.name];
-		obj.userAnswer = event.target.value;
-
-		if (obj.userAnswer === obj.correctAnswer) {
-			obj.isCorrect = true;
-		} else {
-			obj.isCorrect = false;
-		}
-
-		this.setState({
-			questionSet: questionSetCopy
-		});
+		handleChoiceSelection(this, event);
 	};
 
 	// score quiz once answers are submitted
@@ -169,17 +154,15 @@ class NewGame extends Component {
 				isSubmitted: true
 			})
 
-			Swal.fire({
-				title: `Your final score is ${score}/${this.state.questionSet.length}`,
-				type: 'success',
-				allowOutsideClick: false
-			}).then(() => {
+			Swal.fire(alertScore(score, this.state.questionSet.length))
+			.then(() => {
 				Swal.fire(alertPlayAgain).then(result => {
 					if (result.value) {
 						this.resetStates();
 					}
 				})
 			})
+
 		}
 	};
 
@@ -190,28 +173,6 @@ class NewGame extends Component {
 			questionSet: [],
 			isSubmitted: false
 		});
-	}
-
-	showIcon = (userAnswer, rightAnswer, choice) => {
-		if (this.state.isSubmitted) {
-			if (rightAnswer === choice) {
-				return (
-					<FontAwesomeIcon
-						icon='check'
-						className='answerIcon'
-						aria-hidden />
-				)
-			} else if (userAnswer === choice) {
-				return (
-					<FontAwesomeIcon
-						icon='times'
-						className='answerIcon'
-						aria-hidden />
-				)
-			}
-		} else {
-			return ''
-		}
 	}
 
 	render() {
@@ -264,7 +225,7 @@ class NewGame extends Component {
 								required
 								value={this.state.numQuestions}>
 								<option value='5'>5</option>
-								<option value='5'>10</option>
+								<option value='10'>10</option>
 								<option value='15'>15</option>
 								<option value='20'>20</option>
 							</select>
@@ -303,7 +264,7 @@ class NewGame extends Component {
 														{choice}
 
 														{
-															this.showIcon(data.userAnswer, data.correctAnswer, choice)
+															showIcon(this, data.userAnswer, data.correctAnswer, choice)
 														}
 
 													</label>

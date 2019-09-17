@@ -17,17 +17,15 @@ class GameList extends Component {
 		dbRef.on('value', data => {
 			const response = data.val();
 
-			console.log(response);
-
 			const newState = [];
 
-			for (let key in response) {
+			for (let objKey in response) {
 				newState.push({
-					id: key,
-					created: response[key].created,
-					gameName: response[key].gameName,
-					category: response[key].category,
-					numQuestions: response[key].questionSet.length
+					id: objKey,
+					created: response[objKey].created,
+					gameName: response[objKey].gameName,
+					category: response[objKey].category,
+					numQuestions: response[objKey].questionSet.length
 				});
 			}
 
@@ -53,7 +51,6 @@ class GameList extends Component {
 
 				<ul className='existingGames'>
 					{this.state.games.map(game => {
-						console.log(this.state.games);
 						return (
 							<li
 								className='existingGame'

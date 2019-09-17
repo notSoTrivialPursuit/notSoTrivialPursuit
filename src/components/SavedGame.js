@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../firebase.js';
 import Preloader from './Preloader';
 import Swal from 'sweetalert2';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { handleChoiceSelection, showIcon } from '../helpers.js';
 
 class SavedGame extends Component {
 	constructor(props) {
@@ -32,35 +32,16 @@ class SavedGame extends Component {
 		});
 	}
 
-	// On submit of questions, calculate score using the LENGTH of answers array
-	handleSubmit = event => {
-		event.preventDefault();
-	};
-
 	// Whenever user chooses a radio option, it updates the value in the answers array in state
 	handleChange = event => {
-		// ToDo: Refactor this code and make this as a function so that both newGame and SavedGame can just call that function
-		const questionSetCopy = [...this.state.questionSet];
-
-		// Update the userAnswer property value with what the user selected answer
-		const obj = questionSetCopy[event.target.name];
-		obj.userAnswer = event.target.value;
-
-		if (obj.userAnswer === obj.correctAnswer) {
-			obj.isCorrect = true;
-		} else {
-			obj.isCorrect = false;
-		}
-
-		this.setState({
-			questionSet: questionSetCopy
-		});
+		handleChoiceSelection(this, event);
 	};
 
-	// Score game
+	// score quiz once answers are submitted
 	submitAnswers = event => {
-		const form = event.target;
 		event.preventDefault();
+
+		const form = event.target;
 		const correctAnswers = this.state.questionSet.filter(userAnswer => {
 			return userAnswer.isCorrect;
 		});
@@ -76,38 +57,23 @@ class SavedGame extends Component {
 			type: 'success',
 			showCancelButton: true,
 			confirmButtonText: 'Yes, play again',
-			cancelButtonText: 'No, play another game',
+			cancelButtonText: 'No, exit the game',
 			allowOutsideClick: false
 		}).then(result => {
 			if (result.value) {
 				form.reset();
+
+				this.setState({
+					isSubmitted: false
+				});
+
+				window.scrollTo(0, 0);
+
 			} else {
 				this.props.toggleGame('');
 			}
 		});
 	};
-
-	showIcon = (userAnswer, rightAnswer, choice) => {
-		if (this.state.isSubmitted) {
-			if (rightAnswer === choice) {
-				return (
-					<FontAwesomeIcon
-						icon='check'
-						className='answerIcon'
-						aria-hidden />
-				)
-			} else if (userAnswer === choice) {
-				return (
-					<FontAwesomeIcon
-						icon='times'
-						className='answerIcon'
-						aria-hidden />
-				)
-			}
-		} else {
-			return ''
-		}
-	}
 
 	// Renders a form element with multiple divs (for each question) and 1 submit input
 	render() {
@@ -126,42 +92,6 @@ class SavedGame extends Component {
 
 				{
 					this.state.questionSet.map((data, index) => {
-						// return (
-						// 	<div
-						// 		key={index}
-						// 		className='question'
-						// 		onChange={this.handleChange}
-						// 	>
-						// 		<div className="wrapper">
-						// 			<h2>
-						// 				{index + 1}. {data.question}
-						// 			</h2>
-						// 			<div className="choices">
-						// 				{data.choices.map((choice, i) => {
-						// 					const uniqueKey = `${index}`;
-						// 					return (
-						// 						<div key={`${index}-${i}`}>
-						// 							<input
-						// 								type='radio'
-						// 								name={uniqueKey}
-						// 								id={`${uniqueKey}-${i}`}
-						// 								value={choice}
-						// 								className='radioButton'
-						// 							/>
-						// 							<span className='checkMark'></span>
-						// 							<label
-						// 								htmlFor={`${uniqueKey}-${i}`}
-						// 								className='questionLabel'>
-						// 								{choice}
-						// 							</label>
-						// 						</div>
-						// 					);
-						// 				})}
-						// 			</div>
-						// 		</div>
-						// 	</div>
-						// );
-
 						return (
 							<div
 								key={index}
@@ -190,7 +120,8 @@ class SavedGame extends Component {
 														{choice}
 
 														{
-															this.showIcon(data.userAnswer, data.correctAnswer, choice)
+
+															showIcon(this, data.userAnswer, data.correctAnswer, choice)
 														}
 
 													</label>
@@ -209,7 +140,6 @@ class SavedGame extends Component {
 				) : null}
 				})
 			}
-				<button className='formSubmit button'>Submit</button>
 			</form >
 		);
 	}

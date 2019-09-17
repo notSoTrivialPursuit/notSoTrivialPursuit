@@ -1,5 +1,7 @@
 import firebase from './firebase';
 import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 
 const categories = {
 	27: 'Animals',
@@ -33,6 +35,54 @@ const saveGame = (gameName, category, questionSet) => {
 		type: 'success'
 	});
 };
+
+export const handleChoiceSelection = (props, event) => {
+	const questionSetCopy = [...props.state.questionSet];
+
+	// Update the userAnswer property value with what the user selected answer
+	const obj = questionSetCopy[event.target.name];
+	obj.userAnswer = event.target.value;
+
+	if (obj.userAnswer === obj.correctAnswer) {
+		obj.isCorrect = true;
+	} else {
+		obj.isCorrect = false;
+	}
+
+	props.setState({
+		questionSet: questionSetCopy
+	});
+};
+
+export const showIcon = (props, userAnswer, rightAnswer, choice) => {
+	if (props.state.isSubmitted) {
+		if (rightAnswer === choice) {
+			return (
+				<FontAwesomeIcon
+					icon='check'
+					className='answerIcon'
+					aria-hidden />
+			)
+		} else if (userAnswer === choice) {
+			return (
+				<FontAwesomeIcon
+					icon='times'
+					className='answerIcon'
+					aria-hidden />
+			)
+		}
+	} else {
+		return ''
+	}
+}
+
+export const alertScore = (score, totalQuestions) => {
+	return {
+		title: `Your final score is ${score}/${totalQuestions}`,
+		type: 'info',
+		allowOutsideClick: false
+	}
+}
 
 export const alertSubmit = {
 	title: 'Please answer all the questions before submitting.',
