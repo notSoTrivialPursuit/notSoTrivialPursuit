@@ -57,6 +57,7 @@ class GameList extends Component {
 								className='existingGame'
 								onClick={() => this.props.selectSavedGame(game.id)}
 								key={game.id}
+								tabIndex='0'
 							>
 								<div className='wrapper'>
 									<h3>{game.gameName}</h3>
