@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from '../firebase.js';
-import Preloader from './Preloader';
 import Swal from 'sweetalert2';
 import { handleChoiceSelection, showIcon } from '../helpers.js';
 
