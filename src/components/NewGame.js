@@ -154,13 +154,13 @@ class NewGame extends Component {
 			})
 
 			Swal.fire(alertScore(score, this.state.questionSet.length))
-			.then(() => {
-				Swal.fire(alertPlayAgain).then(result => {
-					if (result.value) {
-						this.resetStates();
-					}
+				.then(() => {
+					Swal.fire(alertPlayAgain).then(result => {
+						if (result.value) {
+							this.resetStates();
+						}
+					})
 				})
-			})
 
 		}
 	};
@@ -275,7 +275,7 @@ class NewGame extends Component {
 					})}
 					{this.state.questionSet.length ? (
 						<div className='buttons'>
-							<button className='formSubmit button'>Submit</button>
+							<button className='button'>Submit</button>
 						</div>
 					) : null}
 				</form>

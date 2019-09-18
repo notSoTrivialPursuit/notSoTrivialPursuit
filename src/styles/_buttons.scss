@@ -35,12 +35,14 @@
     font-size: 3rem;
 
     @include tablet {
-    font-size: 5rem;
-    margin: 0 2rem;
+      font-size: 5rem;
+      margin: 0 2rem;       
     }
 
     @include desktop {
       margin: 0 3rem;
+      padding: 3rem;
+      text-align: center;
     }
   }
 }
