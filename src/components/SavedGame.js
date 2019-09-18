@@ -63,7 +63,7 @@ class SavedGame extends Component {
 				title: 'swalTitle',
 				content: 'swalText',
 				confirmButton: 'mySwalConfirmButton',
-				cancelButton: 'mySwalCancelButton' 
+				cancelButton: 'mySwalCancelButton'
 			}
 		}).then(result => {
 			if (result.value) {
@@ -87,8 +87,8 @@ class SavedGame extends Component {
 			<form className='savedGame' action='' id='radioInputs' onSubmit={this.submitAnswers}>
 				<button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
 
-				<div className="gameHeading">
-					<div className="wrapper">
+				<div className='gameHeading'>
+					<div className='wrapper'>
 						<h2>{this.state.gameName}</h2>
 						<h3>{this.state.category}</h3>
 						<h4>Number of questions: {this.state.questionSet.length}</h4>
@@ -103,11 +103,11 @@ class SavedGame extends Component {
 								key={index}
 								className='question'
 								onChange={this.handleChange}>
-								<div className="wrapper">
+								<div className='wrapper'>
 									<h2>
 										{index + 1}. {data.question}
 									</h2>
-									<div className="choices">
+									<div className='choices'>
 										{data.choices.map((choice, i) => {
 											const uniqueKey = `${index}`;
 
