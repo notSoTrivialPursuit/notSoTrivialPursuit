@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Preloader from './Preloader';
 import saveGame, { handleChoiceSelection, alertSubmit, alertPlayAgain, alertAPIError, alertScore, showIcon } from '../helpers';
 import Swal from 'sweetalert2';
 
@@ -121,7 +120,7 @@ class NewGame extends Component {
 				});
 			})
 			.catch(error => {
-				// ToDo: Code to handle when api call fails.  Display human readable message to user.
+				// When api call fails, display human readable message to user.
 				Swal.fire(alertAPIError);
 			});
 	};
@@ -177,7 +176,6 @@ class NewGame extends Component {
 
 	render() {
 		const { questionSet, gameName, category } = this.state;
-		console.log("question set", questionSet);
 
 		return (
 			<div className='newGameTrivia'>
