@@ -19,7 +19,8 @@ class NewGame extends Component {
 		this.state = {
 			responseData: [],
 			choices: [],
-			questionSet: [],
+      questionSet: [],
+      currentQuestion: 0,
 			category: '',
 			numQuestions: 10,
 			gameName: '',
@@ -232,47 +233,51 @@ class NewGame extends Component {
 				</form>
 
 				<form action='' onSubmit={this.submitAnswers}>
-					{questionSet.map((data, index) => {
-						return (
-							<div
-								key={index}
-								className='question'
-								onChange={this.handleChange}>
-								<div className="wrapper">
-									<h2>
-										{index + 1}. {data.question}
-									</h2>
-									<div className="choices">
-										{data.choices.map((choice, i) => {
-											const uniqueKey = `${index}`;
+					{this.state.questionSet.length ? (() => {
+            const questionIndex = this.state.currentQuestion;
+            const question = questionSet[questionIndex];
 
-											return (
-												<div key={`${index}-${i}`}>
-													<input
-														type='radio'
-														name={uniqueKey}
-														id={`${uniqueKey}-${i}`}
-														value={choice}
-														className='radioButton'
-													/>
-													<label
-														htmlFor={`${uniqueKey}-${i}`}
-														className='questionLabel'>
-														{choice}
+            return (
+              <div
+                key={questionIndex}
+                className='question'
+                onChange={this.handleChange}
+              >
+                <div className="wrapper">
+                  <h2>
+                    {questionIndex + 1}. {question.question}
+                  </h2>
+                  <div className="choices">
+                    {question.choices.map((choice, i) => {
+                      const uniqueKey = `${questionIndex}`;
 
-														{
-															showIcon(this, data.userAnswer, data.correctAnswer, choice)
-														}
+                      return (
+                        <div key={`${questionIndex}-${i}`}>
+                          <input
+                            type='radio'
+                            name={questionIndex}
+                            id={`${questionIndex}-${i}`}
+                            value={choice}
+                            className='radioButton'
+                          />
+                          <label
+                            htmlFor={`${questionIndex}-${i}`}
+                            className='questionLabel'>
+                            {choice}
 
-													</label>
-												</div>
-											);
-										})}
-									</div>
-								</div>
-							</div>
-						);
-					})}
+                            {
+                              showIcon(this, question.userAnswer, question.correctAnswer, choice)
+                            }
+
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            );
+          })() : null}
 					{this.state.questionSet.length ? (
 						<div className='buttons'>
 							<button className='formSubmit button'>Submit</button>

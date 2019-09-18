@@ -50,7 +50,8 @@ export const handleChoiceSelection = (props, event) => {
 	}
 
 	props.setState({
-		questionSet: questionSetCopy
+    questionSet: questionSetCopy,
+    currentQuestion: props.state.currentQuestion + 1
 	});
 };
 
