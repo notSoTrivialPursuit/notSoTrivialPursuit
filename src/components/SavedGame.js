@@ -63,7 +63,7 @@ class SavedGame extends Component {
 				title: 'swalTitle',
 				content: 'swalText',
 				confirmButton: 'mySwalConfirmButton',
-				cancelButton: 'mySwalCancelButton' 
+				cancelButton: 'mySwalCancelButton'
 			}
 		}).then(result => {
 			if (result.value) {

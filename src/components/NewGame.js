@@ -137,8 +137,8 @@ class NewGame extends Component {
 		// We need to validate if the user answered all the questions so filter the questionSet objects that have userAnswer values
 		const answeredQuestions = this.state.questionSet.filter((obj) => {
 			return obj.userAnswer !== '';
-    })
-    
+		})
+
 		// Show error if the user did not answer all the questions. Otherwise, show the score
 		if (answeredQuestions.length != this.state.numQuestions) {
 			Swal.fire(alertSubmit);
