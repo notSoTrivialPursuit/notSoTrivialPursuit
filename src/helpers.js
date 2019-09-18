@@ -1,7 +1,7 @@
-import firebase from './firebase';
-import Swal from 'sweetalert2/src/sweetalert2.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import firebase from './firebase';
+import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const categories = {
 	27: 'Animals',
