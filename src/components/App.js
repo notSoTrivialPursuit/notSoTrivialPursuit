@@ -4,7 +4,7 @@ import Footer from './Footer';
 import GameList from './GameList';
 import SavedGame from './SavedGame';
 import NewGame from '../components/NewGame';
-import '.././styles/App.scss';
+import '../styles/App.scss';
 import '../fontawesome';
 
 class App extends Component {
