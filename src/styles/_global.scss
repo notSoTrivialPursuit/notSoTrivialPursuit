@@ -23,7 +23,7 @@ body {
 	background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../assets/softerQuestionPattern.png') fixed;
 	font-size: 1.6rem;
   color: $textColor;
-  animation: animatedBackground 50s linear infinite;
+  animation: animatedBackground 85s linear infinite;
 }
 
 @keyframes animatedBackground {

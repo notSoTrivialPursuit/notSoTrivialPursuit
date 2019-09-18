@@ -1,5 +1,5 @@
 import firebase from './firebase';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2/src/sweetalert2.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
@@ -32,7 +32,13 @@ const saveGame = (gameName, category, questionSet) => {
 	Swal.fire({
 		title: 'Saved!',
 		text: 'Your game is now in the Saved Games list!',
-		type: 'success'
+		type: 'success',
+		customClass: {
+			popup: 'ourSwal',
+			title: 'swalTitle',
+			content: 'swalText',
+			confirmButton: 'mySwalConfirmButton'
+		}
 	});
 };
 
@@ -80,26 +86,47 @@ export const alertScore = (score, totalQuestions) => {
 	return {
 		title: `Your final score is ${score}/${totalQuestions}`,
 		type: 'info',
-		allowOutsideClick: false
+		allowOutsideClick: false,
+		customClass: {
+			popup: 'ourSwal',
+			title: 'swalTitle',
+			confirmButton: 'mySwalConfirmButton',
+		}
 	}
 }
 
 export const alertSubmit = {
 	title: 'Please answer all the questions before submitting.',
 	type: 'error',
-	allowOutsideClick: false
+	allowOutsideClick: false,
+	customClass: {
+		popup: 'ourSwal',
+		title: 'swalTitle',
+		confirmButton: 'mySwalConfirmButton',
+	}
 }
 
 export const alertPlayAgain = {
 	title: 'Play again?',
 	type: 'question',
 	showCancelButton: true,
-	allowOutsideClick: false
+	allowOutsideClick: false,
+	customClass: {
+		popup: 'ourSwal',
+		title: 'swalTitle',
+		confirmButton: 'mySwalConfirmButton',
+		cancelButton: 'mySwalCancelButton'
+	}
 }
 
 export const alertAPIError = {
 	title: 'Something is wrong.  Please try again later',
-	type: 'error'
+	type: 'error',
+	customClass: {
+		popup: 'ourSwal',
+		title: 'swalTitle',
+		confirmButton: 'mySwalConfirmButton',
+	}
 }
 
 export default saveGame;
