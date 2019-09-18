@@ -57,7 +57,14 @@ class SavedGame extends Component {
 			showCancelButton: true,
 			confirmButtonText: 'Yes, play again',
 			cancelButtonText: 'No, exit the game',
-			allowOutsideClick: false
+			allowOutsideClick: false,
+			customClass: {
+				popup: 'ourSwal',
+				title: 'swalTitle',
+				content: 'swalText',
+				confirmButton: 'mySwalConfirmButton',
+				cancelButton: 'mySwalCancelButton' 
+			}
 		}).then(result => {
 			if (result.value) {
 				form.reset();

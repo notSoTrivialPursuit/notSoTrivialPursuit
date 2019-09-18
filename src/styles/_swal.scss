@@ -1,0 +1,18 @@
+.ourSwal .swalTitle {
+    font-size: 2rem;
+}
+
+.ourSwal .swalText {
+    font-size: 1.6rem;
+}
+
+.ourSwal .mySwalConfirmButton, .ourSwal .mySwalCancelButton {
+    font-size: 2.4rem;
+    background: $buttonColor;
+    font-family: $headingFont;
+    padding: 0.5rem 1.5rem;
+}
+
+.ourSwal .mySwalCancelButton {
+    background: $textColor;
+}
