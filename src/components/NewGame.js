@@ -21,7 +21,7 @@ class NewGame extends Component {
 			choices: [],
 			questionSet: [],
 			category: '',
-			numQuestions: 5,
+			numQuestions: 10,
 			gameName: '',
 			isSubmitted: false
 		};
@@ -137,10 +137,10 @@ class NewGame extends Component {
 		// We need to validate if the user answered all the questions so filter the questionSet objects that have userAnswer values
 		const answeredQuestions = this.state.questionSet.filter((obj) => {
 			return obj.userAnswer !== '';
-		})
-
+    })
+    
 		// Show error if the user did not answer all the questions. Otherwise, show the score
-		if (answeredQuestions.length !== this.state.numQuestions) {
+		if (answeredQuestions.length != this.state.numQuestions) {
 			Swal.fire(alertSubmit);
 
 		} else {
@@ -222,7 +222,6 @@ class NewGame extends Component {
 								onChange={this.handleCriteria}
 								required
 								value={this.state.numQuestions}>
-								<option value='5'>5</option>
 								<option value='10'>10</option>
 								<option value='15'>15</option>
 								<option value='20'>20</option>
