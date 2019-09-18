@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d7f430280b4ab11ab372ebcd0097c1a1",
+    "revision": "c8c1e965d35d08cd21bbb9dc38986c25",
     "url": "/notSoTrivialPursuit/index.html"
   },
   {
-    "revision": "d1050d8ad7d5eef10f64",
-    "url": "/notSoTrivialPursuit/static/css/main.15a12dff.chunk.css"
+    "revision": "140325554eb21cfa11be",
+    "url": "/notSoTrivialPursuit/static/css/main.2e93da23.chunk.css"
   },
   {
     "revision": "47cf8004f5914d1999d0",
     "url": "/notSoTrivialPursuit/static/js/2.1515a56f.chunk.js"
   },
   {
-    "revision": "d1050d8ad7d5eef10f64",
-    "url": "/notSoTrivialPursuit/static/js/main.bc4647bb.chunk.js"
+    "revision": "140325554eb21cfa11be",
+    "url": "/notSoTrivialPursuit/static/js/main.62cf2354.chunk.js"
   },
   {
     "revision": "ef7bf702066db6c4b275",

@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/notSoTrivialPursuit/static/css/main.15a12dff.chunk.css",
-    "main.js": "/notSoTrivialPursuit/static/js/main.bc4647bb.chunk.js",
-    "main.js.map": "/notSoTrivialPursuit/static/js/main.bc4647bb.chunk.js.map",
+    "main.css": "/notSoTrivialPursuit/static/css/main.2e93da23.chunk.css",
+    "main.js": "/notSoTrivialPursuit/static/js/main.62cf2354.chunk.js",
+    "main.js.map": "/notSoTrivialPursuit/static/js/main.62cf2354.chunk.js.map",
     "runtime~main.js": "/notSoTrivialPursuit/static/js/runtime~main.21db22a8.js",
     "runtime~main.js.map": "/notSoTrivialPursuit/static/js/runtime~main.21db22a8.js.map",
     "static/js/2.1515a56f.chunk.js": "/notSoTrivialPursuit/static/js/2.1515a56f.chunk.js",
     "static/js/2.1515a56f.chunk.js.map": "/notSoTrivialPursuit/static/js/2.1515a56f.chunk.js.map",
     "index.html": "/notSoTrivialPursuit/index.html",
-    "precache-manifest.fcfc6f631f505a87942814a18629dcb0.js": "/notSoTrivialPursuit/precache-manifest.fcfc6f631f505a87942814a18629dcb0.js",
+    "precache-manifest.146eaa22eb83ffe2d553ae3c9d3b93e9.js": "/notSoTrivialPursuit/precache-manifest.146eaa22eb83ffe2d553ae3c9d3b93e9.js",
     "service-worker.js": "/notSoTrivialPursuit/service-worker.js",
-    "static/css/main.15a12dff.chunk.css.map": "/notSoTrivialPursuit/static/css/main.15a12dff.chunk.css.map",
+    "static/css/main.2e93da23.chunk.css.map": "/notSoTrivialPursuit/static/css/main.2e93da23.chunk.css.map",
     "static/media/App.scss": "/notSoTrivialPursuit/static/media/softerQuestionPattern.82c64498.png"
   }
 }
