@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/notSoTrivialPursuit/static/css/main.aa618c6a.chunk.css",
-    "main.js": "/notSoTrivialPursuit/static/js/main.0e07ae38.chunk.js",
-    "main.js.map": "/notSoTrivialPursuit/static/js/main.0e07ae38.chunk.js.map",
+    "main.css": "/notSoTrivialPursuit/static/css/main.15a12dff.chunk.css",
+    "main.js": "/notSoTrivialPursuit/static/js/main.d9a0e8c8.chunk.js",
+    "main.js.map": "/notSoTrivialPursuit/static/js/main.d9a0e8c8.chunk.js.map",
     "runtime~main.js": "/notSoTrivialPursuit/static/js/runtime~main.21db22a8.js",
     "runtime~main.js.map": "/notSoTrivialPursuit/static/js/runtime~main.21db22a8.js.map",
-    "static/js/2.1515a56f.chunk.js": "/notSoTrivialPursuit/static/js/2.1515a56f.chunk.js",
-    "static/js/2.1515a56f.chunk.js.map": "/notSoTrivialPursuit/static/js/2.1515a56f.chunk.js.map",
+    "static/css/2.e4943a7c.chunk.css": "/notSoTrivialPursuit/static/css/2.e4943a7c.chunk.css",
+    "static/js/2.0b986669.chunk.js": "/notSoTrivialPursuit/static/js/2.0b986669.chunk.js",
+    "static/js/2.0b986669.chunk.js.map": "/notSoTrivialPursuit/static/js/2.0b986669.chunk.js.map",
     "index.html": "/notSoTrivialPursuit/index.html",
-    "precache-manifest.f0ef38a0b930b359ca32f57d38edbe76.js": "/notSoTrivialPursuit/precache-manifest.f0ef38a0b930b359ca32f57d38edbe76.js",
+    "precache-manifest.dbd319c9dbcf3c05ae2c51dc70c7da27.js": "/notSoTrivialPursuit/precache-manifest.dbd319c9dbcf3c05ae2c51dc70c7da27.js",
     "service-worker.js": "/notSoTrivialPursuit/service-worker.js",
-    "static/css/main.aa618c6a.chunk.css.map": "/notSoTrivialPursuit/static/css/main.aa618c6a.chunk.css.map",
+    "static/css/2.e4943a7c.chunk.css.map": "/notSoTrivialPursuit/static/css/2.e4943a7c.chunk.css.map",
+    "static/css/main.15a12dff.chunk.css.map": "/notSoTrivialPursuit/static/css/main.15a12dff.chunk.css.map",
     "static/media/App.scss": "/notSoTrivialPursuit/static/media/softerQuestionPattern.82c64498.png"
   }
 }

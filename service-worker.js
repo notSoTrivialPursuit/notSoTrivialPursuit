@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/notSoTrivialPursuit/precache-manifest.f0ef38a0b930b359ca32f57d38edbe76.js"
+  "/notSoTrivialPursuit/precache-manifest.dbd319c9dbcf3c05ae2c51dc70c7da27.js"
 );
 
 self.addEventListener('message', (event) => {
