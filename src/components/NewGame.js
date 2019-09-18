@@ -191,6 +191,7 @@ class NewGame extends Component {
 								placeholder='Enter name here'
 								onChange={this.handleCriteria}
 								value={this.state.gameName}
+								required
 							/>
 						</div>
 
@@ -238,11 +239,11 @@ class NewGame extends Component {
 								key={index}
 								className='question'
 								onChange={this.handleChange}>
-								<div className="wrapper">
+								<div className='wrapper'>
 									<h2>
 										{index + 1}. {data.question}
 									</h2>
-									<div className="choices">
+									<div className='choices'>
 										{data.choices.map((choice, i) => {
 											const uniqueKey = `${index}`;
 

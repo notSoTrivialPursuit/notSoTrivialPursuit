@@ -44,8 +44,8 @@ class GameList extends Component {
 			<section className='gameListSection'>
 				<button className='returnHome button' onClick={() => this.props.toggleGame('')}>X</button>
 
-				<div className="gameListHeading">
-					<div className="wrapper">
+				<div className='gameListHeading'>
+					<div className='wrapper'>
 						<h2>Saved Games</h2>
 					</div>
 				</div>
@@ -58,7 +58,7 @@ class GameList extends Component {
 								onClick={() => this.props.selectSavedGame(game.id)}
 								key={game.id}
 							>
-								<div className="wrapper">
+								<div className='wrapper'>
 									<h3>{game.gameName}</h3>
 									<p>Category: {game.category}</p>
 									<p>Number of questions: {game.numQuestions}</p>
