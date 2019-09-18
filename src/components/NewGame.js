@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Preloader from './Preloader';
 import saveGame, { handleChoiceSelection, alertSubmit, alertPlayAgain, alertAPIError, alertScore, showIcon } from '../helpers';
 import Swal from 'sweetalert2';
 
@@ -22,7 +21,7 @@ class NewGame extends Component {
 			choices: [],
 			questionSet: [],
 			category: '',
-			numQuestions: 5,
+			numQuestions: 10,
 			gameName: '',
 			isSubmitted: false
 		};
@@ -121,7 +120,7 @@ class NewGame extends Component {
 				});
 			})
 			.catch(error => {
-				// ToDo: Code to handle when api call fails.  Display human readable message to user.
+				// When api call fails, display human readable message to user.
 				Swal.fire(alertAPIError);
 			});
 	};
@@ -138,10 +137,10 @@ class NewGame extends Component {
 		// We need to validate if the user answered all the questions so filter the questionSet objects that have userAnswer values
 		const answeredQuestions = this.state.questionSet.filter((obj) => {
 			return obj.userAnswer !== '';
-		})
-
+    })
+    
 		// Show error if the user did not answer all the questions. Otherwise, show the score
-		if (answeredQuestions.length !== this.state.numQuestions) {
+		if (answeredQuestions.length != this.state.numQuestions) {
 			Swal.fire(alertSubmit);
 
 		} else {
@@ -177,7 +176,6 @@ class NewGame extends Component {
 
 	render() {
 		const { questionSet, gameName, category } = this.state;
-		console.log("question set", questionSet);
 
 		return (
 			<div className='newGameTrivia'>
@@ -224,7 +222,6 @@ class NewGame extends Component {
 								onChange={this.handleCriteria}
 								required
 								value={this.state.numQuestions}>
-								<option value='5'>5</option>
 								<option value='10'>10</option>
 								<option value='15'>15</option>
 								<option value='20'>20</option>
